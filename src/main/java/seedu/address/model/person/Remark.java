@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents additional details about a person.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
+ */
 public class Remark {
     public static final String MESSAGE_CONSTRAINTS =
             "Remark must be less than 100 characters";
