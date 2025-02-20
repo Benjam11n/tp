@@ -20,10 +20,10 @@ public class Remark {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid remark.
      */
     public static boolean isValidRemark(String remark) {
-        return remark != null && !remark.isEmpty() && remark.length() <= 100;
+        return remark != null && remark.length() <= 100;
     }
 
     @Override

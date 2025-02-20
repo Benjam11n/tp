@@ -108,10 +108,14 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (!Remark.isValidRemark(this.remark)) {
+        final Remark modelRemark;
+        if (remark == null) {
+            modelRemark = new Remark("");
+        } else if (!Remark.isValidRemark(remark)) {
             throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+        } else {
+            modelRemark = new Remark(remark);
         }
-        final Remark modelRemark = new Remark(remark);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
