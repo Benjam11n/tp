@@ -12,9 +12,8 @@ public class Notes {
     public static final String MESSAGE_CONSTRAINTS_LENGTH =
             "Notes can be at most " + MAX_LENGTH + " characters long";
     public static final String MESSAGE_CONSTRAINTS_CHARACTERS =
-            "Notes can only contain printable ASCII characters";
-    // This regex matches only printable ASCII characters (codes 32-126)
-    public static final String VALIDATION_REGEX = "^[\\x20-\\x7E]*$";
+            "Notes can only contain printable ASCII characters and should not be blank";
+    public static final String VALIDATION_REGEX = "^[\\x20-\\x7E]+$";
 
     public final String value;
 
@@ -36,9 +35,6 @@ public class Notes {
      * @throws IllegalArgumentException if the notes are invalid.
      */
     public static boolean isValidNotes(String test) {
-        if (test.isEmpty()) {
-            return true;
-        }
         if (test.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS_LENGTH);
         }
@@ -58,12 +54,9 @@ public class Notes {
         if (other == this) {
             return true;
         }
-
-        // instanceof handles nulls
         if (!(other instanceof Notes)) {
             return false;
         }
-
         Notes otherNotes = (Notes) other;
         return value.equals(otherNotes.value);
     }

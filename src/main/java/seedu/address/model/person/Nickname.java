@@ -12,9 +12,8 @@ public class Nickname {
     public static final String MESSAGE_CONSTRAINTS_LENGTH =
             "Nicknames should be less than " + MAX_LENGTH + " characters long";
     public static final String MESSAGE_CONSTRAINTS_CHARACTERS =
-            "Nicknames can only contain printable ASCII characters";
-    // This regex matches only printable ASCII characters (codes 32-126)
-    public static final String VALIDATION_REGEX = "^[\\x20-\\x7E]*$";
+            "Nicknames can only contain printable ASCII characters and should not be blank";
+    public static final String VALIDATION_REGEX = "^[\\x20-\\x7E]+$";
 
     public final String nickname;
 
@@ -33,9 +32,6 @@ public class Nickname {
      * Validates the nickname and throws an IllegalArgumentException with a specific message if invalid.
      */
     public static boolean isValidNickname(String test) {
-        if (test.isEmpty()) {
-            return true;
-        }
         if (test.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS_LENGTH);
         }
@@ -55,7 +51,6 @@ public class Nickname {
         if (other == this) {
             return true;
         }
-        // instanceof handles nulls
         if (!(other instanceof Nickname)) {
             return false;
         }
