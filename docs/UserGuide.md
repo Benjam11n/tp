@@ -185,11 +185,11 @@ Shows a list of all persons in the family book.
 - `list` - Sorted by insertion order
 - `list s/asc` — Sorted by closest upcoming birthday<br>
     <br>
-  <img src="images/UpcomingBirthdays.png" alt="Ui" height="200px" width="300px"> <br>
+  <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
 - `list s/desc` — Sorted by farthest upcoming birthday <br>
   <br>
-  <img src="images/DistantBirthdays.png" alt="Ui" height="200px" width="300px"> <br>
+  <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
 
 ---
@@ -252,7 +252,7 @@ Clears all entries from the address book.
 
 Shows a help window with guidance on using the app.
 
-<img src="images/helpMessage.png" alt="Ui" height="250px" width="300px"> <br>
+<img src="images/helpMessage.png" alt="Ui" height="40px" width="550px"> <br>
     <br>
 
 **Format:** `help`
