@@ -14,7 +14,7 @@ public class RedoCommand extends Command {
             + ": Redoes the most recent command entered by the user.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_REDO_SUCCESS = "Redo successful!";
+    public static final String MESSAGE_REDO_SUCCESS = "Redo successful! Re-did Command: ";
 
     public static final String MESSAGE_FAILURE = "Nothing to redo!";
 
@@ -27,7 +27,8 @@ public class RedoCommand extends Command {
         }
 
         lastCommand.redo(model);
-        return new CommandResult(MESSAGE_REDO_SUCCESS);
+        String redidCommand = lastCommand.getCommandString();
+        return new CommandResult(MESSAGE_REDO_SUCCESS + redidCommand);
     }
 
     @Override

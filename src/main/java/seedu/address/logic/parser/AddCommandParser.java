@@ -34,7 +34,9 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
+    public static final String MISSING_COMPULSORY_PARAM = "Missing compulsory parameter: n/NAME";
+    public static final String NON_EMPTY_PREAMBLE = "Detected unexpected string between command "
+            + "and first valid parameter\n";
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -44,10 +46,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_BIRTHDAY, PREFIX_RELATIONSHIP, PREFIX_NICKNAME, PREFIX_NOTES, PREFIX_IMG, PREFIX_TAG);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            throw new ParseException(String.format(MISSING_COMPULSORY_PARAM
+                    + MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(NON_EMPTY_PREAMBLE
+                    + MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,

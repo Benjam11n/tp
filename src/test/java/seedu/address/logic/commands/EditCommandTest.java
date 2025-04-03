@@ -21,9 +21,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,6 +46,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.namepredicate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -171,7 +175,6 @@ public class EditCommandTest {
     @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
@@ -182,7 +185,8 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new CommandHistory(model.getCommandHistory()));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
+        List<String> keywords = List.of(personInFilteredList.getName().toString());
+        expectedModel.updateFilteredPersonList(new NameContainsKeywordsPredicate(keywords));
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -337,6 +341,34 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB, new ArrayList<>())));
+    }
+
+    @Test
+    public void getCommandString_returnsCorrectUndoMessage() throws Exception {
+        // Arrange: Original and edited person
+        Person original = new PersonBuilder()
+                .withName("Alice Pauline")
+                .withEmail("alice@example.com")
+                .build();
+
+        Person edited = new PersonBuilder(original)
+                .withName("Bob Choo")
+                .withEmail("bob@example.com")
+                .build();
+
+        EditCommand.EditPersonDescriptor descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor.setName(edited.getName());
+        descriptor.setEmail(edited.getEmail());
+
+        EditCommand editCommand = new EditCommand(Index.fromZeroBased(0), descriptor, new ArrayList<>());
+
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
+        model.setPerson(model.getFilteredPersonList().get(0), original); // overwrite with known person
+
+        editCommand.execute(model);
+
+        String expected = String.format("edit 1: %s -> %s", ALICE.getName(), BOB.getName());
+        assertEquals(expected, editCommand.getCommandString());
     }
 
     @Test

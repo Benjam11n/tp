@@ -42,7 +42,7 @@ public class RedoCommandTest {
         commandTracker.popUndo();
 
         RedoCommand redoCommand = new RedoCommand();
-        String expectedMessage = "Redo successful!";
+        String expectedMessage = "Redo successful! Re-did Command: add MockPerson";
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new CommandHistory());
         assertCommandSuccess(redoCommand, model, expectedMessage, expectedModel);
@@ -87,5 +87,10 @@ public class RedoCommandTest {
 
         @Override
         public void redo(Model model) { }
+
+        @Override
+        public String getCommandString() {
+            return "add MockPerson";
+        }
     }
 }

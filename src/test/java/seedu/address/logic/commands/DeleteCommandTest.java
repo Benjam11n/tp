@@ -183,6 +183,21 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void getCommandStringMethod_invalidPersons_returnsUnsuccessfulSummary() {
+        DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON));
+        String expected = String.format("delete <unknown person(s)>");
+        assertEquals(expected, deleteCommand.getCommandString());
+    }
+
+    @Test
+    public void getCommandString_nonEmptyPersons_returnsSuccessfulSummary() throws CommandException {
+        DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON));
+        deleteCommand.execute(model);
+        String expected = String.format("delete Alice Pauline");
+        assertEquals(expected, deleteCommand.getCommandString());
+    }
+
+    @Test
     public void toStringMethod() {
         List<Index> targetIndices = List.of(Index.fromOneBased(1), Index.fromOneBased(2));
         DeleteCommand deleteCommand = new DeleteCommand(targetIndices);

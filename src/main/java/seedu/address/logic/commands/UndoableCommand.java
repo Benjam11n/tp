@@ -15,4 +15,9 @@ public abstract class UndoableCommand extends Command {
      * Redoes the last undone command.
      */
     public abstract void redo(Model model);
+
+    /**
+     * Gets the command string of the executed command.
+     */
+    public abstract String getCommandString();
 }

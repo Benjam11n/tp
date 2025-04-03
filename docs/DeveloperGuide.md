@@ -107,6 +107,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. Please do note that this explanation is **intentionally** simplified (i.e. no elaboration on `executeConfirmed`) for the ease of reading and reference. 
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -126,7 +127,8 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPrefs` object.
+* stores a `CommandHistory` object that stores the past commands of the user. This is exposed to the outside as a `ReadOnlyCommandHistory` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
@@ -142,12 +144,14 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save address book data, command history data, and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `CommandHistoryStorage` and `UserPrefStorage`, which means it can be treated as any one (if only the functionality of only one is needed).
+* provides read-only interfaces (`ReadOnlyAddressBook` and `ReadOnlyCommandHistory`) for controlled data access.
+* is implemented by concrete classes `JsonAddressBookStorage` and `JsonCommandHistoryStorage` which extend the abstract generic `JsonStorage<T, S extends JsonSerializable<T>>` for type-safe serialization.
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -159,10 +163,103 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Current\] Undo/Redo feature
 
-#### Proposed Implementation
+#### Current Implementation
 
+The current undo/redo mechanism is facilitated by `CommandTracker`. It tracks the `Undoable` commands i.e. commands that extend `Undoable` in the form of 2 separate stacks: `undoStack` and `redoStack`. 
+Additionally, it supports these operations:
+
+* `CommandTracker#getInstance` - Returns the singleton instance of ```CommandTracker```
+* `CommandTracker#push` - Pushes a new `UndoableCommmand` onto the undo stack and clears the redo stack
+* `CommandTracker#popUndo` - Pops and returns the most recent command from the undo stack
+* `CommandTracker#getRedo` - Pops and returns the most recent command from the redo stack
+* `CommandTracker#canUndo` - Returns true if there are commands to undo
+* `CommandTracker#canRedo` - Returns true if there are commands to redo
+* `CommandTracker#clear` - Clears both the undo and redo stacks
+
+Step 1: Initial Application Launch
+
+- State:
+  - The application is launched.
+  - The address book contains preloaded contacts.
+
+-  Behaviour:
+    - No undo or redo operations are available at this point since no changes have been made.
+
+Step 2: Adding a Person
+
+- Action:
+  - The user executes the `add` command to add a new person.
+  - ```add n/John Doe p/98765432 e/johndoe@example.com```
+
+- State:
+    - The address book now contains the new person, John Doe.
+
+-  Behaviour:
+    - The `add` command is executed and is reflected in the new address book state (with the newly added person). 
+    - ```CommandTracker.getInstance().push()``` is called to push this command to the undo stack.
+        - This is allowed because the ```AddCommand``` extends ```UndoableCommand```.
+    - `undo` is now available, but `redo` is not (since no action has been undone yet).
+
+Step 3: Deleting a Person
+
+- Action:
+    - The user executes the ```delete``` command to delete the previously added person.
+    - ```delete <index>``` where `index` is the location John Doe is stored.
+
+- State:
+    - The address book now no longer contains John Doe.
+
+- Behaviour:
+    - The ```delete command``` is executed and is reflected in the new address book state (without the deleted person).
+    - ```CommandTracker.getInstance().push()``` is called to push this command to the undo stack.
+        - This is allowed because the ```DeleteCommand``` extends ```UndoableCommand```.
+    - `undo` is still available to restore the deleted person, but `redo` is still not available since delete has not been undone yet.
+
+Step 4: Undoing the DeleteCommand
+
+<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram" />
+
+- Action:
+    - The user decides to undo the delete command using the ```undo``` command.
+
+- State:
+    - The address book is reverted to the state before the delete command, with John Doe restored.
+
+- Behaviour:
+  - The ```undo``` command is called.
+  - ```CommandTracker.canUndo()``` is called to see if the command can be undone.
+      - Since it can, ```CommandTracker.getInstance().popUndo()``` is called to pop the command from the undo stack.
+      - Subsequently, this command is also pushed to the redo stack.
+  - The ```DeleteCommand#redo``` method is invoked on the last ```delete``` command and restores the deleted person.
+  - `undo` is still available (for the intial ```add``` command) and `redo` is available since delete has been undone.
+
+Step 5: Redoing the DeleteCommand
+
+<puml src="diagrams/RedoSequenceDiagram-Logic.puml" alt="RedoSequenceDiagram" />
+
+- Action:
+    - The user decides to redo the delete command using the ```redo``` command.
+
+- State:
+    - The address book is reverted to the state after the delete command, with John Doe deleted.
+
+- Behaviour:
+    - The ```redo``` command is called.
+    - ```CommandTracker.canRedo()``` is called to see if the command can be redone.
+        - Since it can, ```CommandTracker.getInstance().popRedo()``` is called to pop the command from the redo stack.
+    - The ```DeleteCommand#redo``` method is invoked on the last ```delete``` command and deletes the person again.
+    - `undo` is still available (for the intial ```add``` command) and `redo` is no longer available since delete has been redone.
+
+**Note:** At this point, the user should be able to notice that the `undo` and `redo` commands can be called in a circular manner i.e. ```undo -> redo -> undo -> ...``` 
+
+#### Planned Extensions
+1. Ensure undo / redo restore order in any state
+   1. This applies to the states after list and find have been executed followed by an `UndoableCommand`
+1. Implement undo / redo for `clear`
+
+### \[Proposed\] Possible Undo/Redo Implementation
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
@@ -205,7 +302,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
+<puml src="diagrams/UndoSequenceDiagramProposed-Logic.puml" alt="UndoSequenceDiagram-Logic" />
 
 <box type="info" seamless>
 
@@ -236,25 +333,6 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -469,18 +547,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2. Should be able to hold up to 1000 family members without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 200 family members with a response time of less than 5 seconds.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. All features should function without requiring an internet connection.
-5. The application should launch and be ready for user interaction within 5 seconds on standard hardware.
-6. The application should handle unexpected inputs gracefully with informative error messages.
-7. All commands should execute and display results within 2 seconds on a standard computer system.
-8. All family data should be stored locally.
+4. The application should handle unexpected inputs gracefully with informative error messages.
+5. The application should not utilise a database management system.
+6. All family data should be stored locally.
+7. All family data should be stored in a human editable text file.
+8. The software should function without an installer.
+9. The software architecture must primarily follow object-oriented programming principles. 
+10. External libraries must be free, open-source, require no user installation.
+11. The GUI must work well at 1920×1080 resolution and higher with 100-125% scaling, and remain usable at 1280×720 with 150% scaling. 
+12. The product JAR file must not exceed 100MB, and documentation PDFs must not exceed 15MB each. 
+13. The entire application must be packaged as a single JAR file.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Average typing speed**: 40 words per minute (wpm)
+* **JAR file**: Java Archive file that packages multiple Java class files and associated metadata into a single file
+* **Human editable text file**: A file format such as JSON or txt that can be read and modified using common text editors
+* **JSON**: JavaScript Object Notation, a lightweight data interchange format that uses human-readable text to store and transmit data objects consisting of attribute-value pairs and arrays
+* **Database management system**: Software for creating and managing databases, providing systematic access to stored data (e.g., MySQL, PostgreSQL, MongoDB)
+* **GUI:** Graphical User Interface, a visual way of interacting with a computer program using graphical elements such as windows, icons, and buttons
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -501,7 +589,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file or run `java -jar <file_name>` in the folder. <br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -510,16 +599,47 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
 
+1. Adding a person with ALL fields
+
+    1. Prerequisites: No persons / Multiple persons in the list.
+
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/30-12-2001 r/Father nn/Johnny no/Allergic to peanuts t/friends t/owesMoney`<br>
+       Expected: Person with given details is added to the list.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: Person is added as only name is a compulsory field.
+
+    1. Other incorrect add commands to try: `add`, `add 3`, `add x/` (where x is an unknown field)<br>
+       Expected: Error details shown in the status message. Status bar remains the same.
+
+### Editing a person
+
+1. Edit some fields of a person
+
+    1. Prerequisites: At least one person in the list.
+
+    1. Test case: `edit 1 p/91234567 e/johndoe@example.com`<br>
+       Expected: Person at index 1 is edited with new details.
+
+    1. Test case: `edit 1`<br>
+       Expected: Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect edit commands to try: `edit x` (where x is an unknown index), `edit 1 y/` (where y is an unknown field)<br>
+       Expected: Similar to previous.
+    
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command and at least one person in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: Confirmation message pops up. First contact is deleted from the list when user enters `y`. Details of the deleted contact shown in the status message.
+   
+    1. Test case: `delete 1`<br>
+       Expected: Confirmation message pops up. Contact is not deleted from the list when user enters `n`. Deletion abortion message is shown.
 
     1. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -527,12 +647,113 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Listing persons
+
+1. List persons
+
+    1. Prerequisites: At least one person in the list.
+
+    1. Test case: `list asc`<br>
+       Expected: Persons listed in order of soonest upcoming birthday.
+
+    1. Test case: `list desc`<br>
+       Expected: Persons listed with furthest birthdays first.
+
+    1. Other incorrect delete commands to try: `list 1`, `list y/` (where y is an unknown field)<br>
+       Expected: Error details shown in the status message. Status bar remains the same.
+
+### Clear persons
+
+1. Clear persons
+
+    1. Prerequisites: At least one person in the list.
+
+    1. Test case: `clear`<br>
+       Expected: Confirmation message pops up. All contacts cleared when user enters `y`.
+
+    1. Test case: `clear`<br>
+       Expected: Confirmation message pops up. No action occurs when user enters `n`.
+
+    1. Test case: `clear 1`<br>
+       Expected: Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `clear name`, `clear 1`<br>
+       Expected: Similar to previous.
+
+### Finding persons
+
+1. Finding a person / persons
+
+    1. Prerequisites: At least one person in the list.
+
+    1. Test case: `find Alice`<br>
+       Expected: Persons with "Alice" in their name are listed.
+
+    1. Test case: `find ALICE`<br>
+       Expected: Persons with "Alice" in their name are listed.
+
+    1. Test case: `find Aliss`<br>
+       Expected: Shows no exact matches but displays similar entries.
+
+### Undo and Redo
+
+1. Undo the last command
+
+    1. Prerequisites: At least one undoable command (e.g., add, edit, delete) has been executed.
+
+    1. Test case: `undo`<br>
+       Expected: Last change is reverted. Successful undo message shown.
+
+2. Redo the last undone command
+
+   1. Test case: `redo` <br>
+      Expected: The previously undone change is re-applied. Successful redo message shown.
+
+3. Attempting undo/redo when nothing to undo/redo or after undoable command
+
+    1. Test case: undo or redo repeatedly after no more history <br>
+    Expected: Error message "Nothing to undo!" or "Nothing to redo!" displayed.
+
+### Help and Exit
+
+1. Help command
+
+    1. Test case: `help` <br>
+    Expected: Help window appears.
+
+2. Exit command
+
+    1. Test case: `exit` <br>
+    Expected: Application closes.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Load the application and run some commands.
 
-1. _{ more test cases …​ }_
+    1. Go into the folder where the jar file is stored and delete the savedata folder.
+
+    1. Re-run the application.
+
+    1. Address book is now in original default state with preloaded contacts for testing.
+
+2. Transferring data
+
+    1. Go into the folder where the jar file is stored and delete the savedata folder.
+
+    1. Replace it with your incoming savedata folder.
+
+    1. Re-run the application.
+
+    1. Address book contains contacts from the new savedata folder.
+
+1. Modifying data
+
+    1. Go into the folder where the jar file is stored and modify the savedata folder.
+
+    1. You may add/edit/delete people here manually.
+
+    1. Re-run the application.
+
+    1. Address book contains contacts from the modified savedata folder.

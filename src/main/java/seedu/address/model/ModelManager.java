@@ -159,6 +159,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPersonAt(Person person, int index) {
+        addressBook.addPersonAt(person, index);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.CommandTracker;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
@@ -34,6 +35,8 @@ public class ClearCommand extends Command implements ConfirmableCommand {
     public CommandResult executeConfirmed(Model model) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
+        CommandTracker tracker = CommandTracker.getInstance();
+        tracker.clear();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

@@ -87,6 +87,11 @@ public class AddCommand extends UndoableCommand {
     }
 
     @Override
+    public String getCommandString() {
+        return COMMAND_WORD + " " + toAdd.toCommandSummary();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

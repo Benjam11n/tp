@@ -163,6 +163,15 @@ public class Person {
                             nickname, notes, tags);
     }
 
+    /**
+     * Returns the summary of the person that a command was called upon.
+     *
+     * @return The command summary of the person.
+     */
+    public String toCommandSummary() {
+        return String.format("%s", name);
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

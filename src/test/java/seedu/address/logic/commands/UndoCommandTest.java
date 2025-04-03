@@ -33,7 +33,7 @@ public class UndoCommandTest {
         commandTracker.push(mockCommand);
 
         UndoCommand undoCommand = new UndoCommand();
-        String expectedMessage = "Undo successful!";
+        String expectedMessage = "Undo successful! Reverted Command: add MockPerson";
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new CommandHistory());
         assertCommandSuccess(undoCommand, model, expectedMessage, expectedModel);
@@ -78,5 +78,10 @@ public class UndoCommandTest {
 
         @Override
         public void redo(Model model) { }
+
+        @Override
+        public String getCommandString() {
+            return "add MockPerson";
+        }
     }
 }

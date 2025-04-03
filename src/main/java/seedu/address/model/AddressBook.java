@@ -57,6 +57,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
     }
 
+    public void addPersonAt(Person person, int index) {
+        persons.addAt(person, index);
+    }
+
     //// person-level operations
 
     /**
