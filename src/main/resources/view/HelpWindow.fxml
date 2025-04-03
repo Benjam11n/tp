@@ -19,7 +19,7 @@
         <VBox styleClass="header-container">
           <HBox styleClass="title-container">
             <Label text="who-are-you-again?" styleClass="app-title"/>
-            <Label text="v1.4" styleClass="version-label"/>
+            <Label text="v1.5" styleClass="version-label"/>
           </HBox>
           <Label text="docs" styleClass="docs-label"/>
         </VBox>
@@ -33,36 +33,6 @@
               <Text text="Hey! How can we help?" styleClass="big-header"/>
               <Text text="If you're new, let's help you get set up!" styleClass="sub-header"/>
             </VBox>
-
-            <!-- Quick Start Block -->
-            <VBox styleClass="section">
-              <Label text="Quick Start" styleClass="section-header"/>
-              <VBox styleClass="paragraph-container">
-                <TextFlow styleClass="paragraph">
-                  <Text text="1. Ensure you have Java 17 or above installed on your computer." style="-fx-fill: white;"/>
-                </TextFlow>
-                <TextFlow styleClass="paragraph">
-                  <Text text="2. Download the latest .jar file." style="-fx-fill: white;"/>
-                </TextFlow>
-                <TextFlow styleClass="paragraph">
-                  <Text text="3. Copy the file to the folder you want to use as the home folder for who-are-you-again?." style="-fx-fill: white;"/>
-                </TextFlow>
-                <TextFlow styleClass="paragraph">
-                  <Text text="4. Open a command terminal, " style="-fx-fill: white;"/>
-                  <Text text="cd" styleClass="code-inline"/>
-                  <Text text= " into the folder you put the jar file in, and use the " style="-fx-fill: white;"/>
-                  <Text text="java -jar whoareyouagain.jar" styleClass="code-inline"/>
-                  <Text text=" command to run the application." style="-fx-fill: white;"/>
-                </TextFlow>
-                <TextFlow styleClass="paragraph">
-                  <Text text="5. Type the command in the command box and press Enter to execute it. e.g. typing " style="-fx-fill: white;"/>
-                  <Text text="help" styleClass="code-inline"/>
-                  <Text text=" and pressing Enter will open the help window." style="-fx-fill: white;"/>
-                </TextFlow>
-              </VBox>
-            </VBox>
-
-
 
 
             <!-- Commands -->
@@ -142,7 +112,7 @@
 
                   <TextFlow>
                     <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
-                    <Text text="Certain commands will request for confirmation before executed. These commands are often destructive in nature and require user confirmation before they can proceed." style="-fx-fill: white; -fx-font-size:14px"/>
+                    <Text text="Certain commands will request for confirmation before executed. These commands require user confirmation before they can proceed." style="-fx-fill: white; -fx-font-size:14px"/>
                   </TextFlow>
                   <TextFlow style="-fx-padding: 0 0 0 15px;">
                     <Text text="e.g. " style="-fx-fill: white; -fx-font-size:14px"/>
@@ -151,7 +121,7 @@
                   </TextFlow>
 
                   <!-- Pro Tip: Command History Block -->
-                  <VBox styleClass="pro-tip-container" style="-fx-background-color: #2a3b4d; -fx-background-radius: 8; -fx-padding: 12; -fx-border-color: #4a6b8a; -fx-border-radius: 8; -fx-border-width: 1;">
+                  <VBox style="-fx-background-color: #2a3b4d; -fx-background-radius: 8; -fx-padding: 12; -fx-border-color: #4a6b8a; -fx-border-radius: 8; -fx-border-width: 1;">
                     <HBox spacing="8" alignment="CENTER_LEFT">
                       <!-- Sparkle Icon -->
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
@@ -181,12 +151,12 @@
 
                 <TextFlow styleClass="paragraph">
                   <Text text="Syntax: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                  <Text text="add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​" styleClass="code-block"/>
+                  <Text text="add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​" styleClass="code-block"/>
                 </TextFlow>
                 <VBox spacing="20" alignment="CENTER_LEFT">
                   <TextFlow styleClass="paragraph">
                     <Text text="Description: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                    <Text text="The add command is really simple! It adds a contact to the address book. When using add, ensure that all fields are indicated with their respective flag (for example: add n/John Doe... adds a contact with the name John Doe)." style="-fx-fill: white;"/>
+                    <Text text="The add command adds a contact to the address book. When using add, ensure that all fields are indicated with their respective flag (for example: add n/John Doe... adds a contact with the name John Doe)." style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <!-- Requirements Section -->
@@ -205,6 +175,10 @@
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="No consecutive special characters (e.g., --, @@, ..)" style="-fx-fill: white;"/>
                   </TextFlow>
+                  <TextFlow styleClass="paragraph">
+                    <Text text="• " style="-fx-fill: white;"/>
+                    <Text text="Maximum length of 150 characters." style="-fx-fill: white;"/>
+                  </TextFlow>
 
                   <!-- Note Section Block -->
                   <HBox spacing="10"  styleClass="note-box">
@@ -222,6 +196,11 @@
                         <Text text="• You can add multiple tags to a contact." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
+                        <Text text="• Only " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=".png" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text=" images are allowed." style="-fx-fill: white; -fx-font-size:14px"/>
+                      </TextFlow>
+                      <TextFlow>
                         <Text text="• All " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="/" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" characters must be escaped with " style="-fx-fill: white; -fx-font-size:14px"/>
@@ -232,7 +211,7 @@
                         <Text text="  E.g. To include " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="s/o" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" in a name, type it as " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="s\\/o" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text="s\/o" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -240,7 +219,7 @@
                   <!-- Example Block -->
                   <TextFlow styleClass="paragraph">
                     <Text text="Example: " style="-fx-fill: white; -fx-font-weight: bold;"  wrappingWidth="200"/>
-                    <Text text="add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 no/My favorite son" styleClass="code-block"/>
+                    <Text text="add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 img/C:/Nickie.png no/My favorite son" styleClass="code-block"/>
                   </TextFlow>
                 </VBox>
               </VBox>
@@ -354,9 +333,7 @@
                     <Text text="Edits the person at the specified " style="-fx-fill: white;"/>
                     <Text text="INDEX" style="-fx-fill: white; -fx-font-weight: bold;"/>
                     <Text text=". The index refers to the index number shown in the displayed person list. The index " style="-fx-fill: white;"/>
-                    <Text text="must be a positive integer" style="-fx-fill: white; -fx-font-weight: bold;"/>
-                    <Text text=" 1, 2, 3, …​" style="-fx-fill: white;"/>
-                  </TextFlow>
+                    <Text text="must be a positive integer." style="-fx-fill: white; -fx-font-weight: bold;"/></TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="At least one of the optional fields must be provided." style="-fx-fill: white;"/>
@@ -371,13 +348,13 @@
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="You can remove all the person's tags by typing " style="-fx-fill: white;"/>
+                    <Text text="You can remove all a contact's tags by typing " style="-fx-fill: white;"/>
                     <Text text="t/" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" without specifying any tags after it." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Note this command can be undone  " style="-fx-fill: white;"/>
+                    <Text text="Note this command can be undone using " style="-fx-fill: white;"/>
                     <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" in order to revert edits you just made." style="-fx-fill: white;"/>
                   </TextFlow>
@@ -463,9 +440,7 @@
                         <Text text="• Undo works linearly - it can only reverse the most recent command" style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="• Some commands like " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="clear" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" may require multiple undos to fully revert" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• The undo/redo history persists even when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -548,7 +523,7 @@
                         <Text text=" - any other command will clear the redo history" style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="• The undo/redo history is reset when the application is closed" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• The undo/redo history persists even when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -688,7 +663,7 @@
 
                 <TextFlow styleClass="paragraph">
                   <Text text="Syntax: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                  <Text text="list" styleClass="code-block"/>
+                  <Text text="list [s/ORDER]" styleClass="code-block"/>
                 </TextFlow>
 
                 <VBox spacing="20" alignment="CENTER_LEFT">
@@ -710,7 +685,7 @@
                         <Text text="• The list command displays all contacts in the order they were added to the address book." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="• This command doesn't require any additional parameters." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• You can add sort methods to list too! More on that in the birthday section below." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -718,7 +693,8 @@
                   <!-- Example Block -->
                   <TextFlow styleClass="paragraph">
                     <Text text="Example: " style="-fx-fill: white; -fx-font-weight: bold;" wrappingWidth="200"/>
-                    <Text text="list" styleClass="code-block"/>
+                    <Text text="list s/asc" styleClass="code-block"/>
+                    <Text text=" returns a sorted view of all contacts in ascending order of birthdays." style="-fx-fill: white; -fx-font-size:14px"/>
                   </TextFlow>
 
                   <!-- Birthday Reminder Block -->
