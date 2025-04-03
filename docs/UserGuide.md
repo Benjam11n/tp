@@ -245,6 +245,7 @@ If there's nothing to redo, the command will do nothing.
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
+It's important to note that the `clear` command cannot be undone using `undo` - so be wary when using clear!
 
 **Format:** `clear`
 
@@ -252,7 +253,7 @@ Clears all entries from the address book.
 
 Shows a help window with guidance on using the app.
 
-<img src="images/helpMessage.png" alt="Ui" height="40px" width="550px"> <br>
+<img src="images/helpMessage.png" alt="Ui" height="400px" width="540px"> <br>
     <br>
 
 **Format:** `help`
@@ -311,5 +312,5 @@ Action     | Format, Examples
 **Undo**   | `undo`<br>Reverts the most recent `add`, `edit`, or `delete` command
 **Redo**   | `redo`<br>Re-applies the most recently undone command (only if `undo` was used before)
 **Clear**  | `clear`
-**Help**   | `help`
+**Help**   | `help` <br>Opens up the help window.
 **Exit**  | `exit`
