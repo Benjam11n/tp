@@ -372,18 +372,18 @@ record-keeping while adding a fun and practical element to family interactions.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                                                              | So that I can…​                                            |
-|----------|---------|-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| `* * *`  | user    | add a family member to my address book                                                                    | keep track of relatives                                    |
-| `* * *`  | user    | delete a family member                                                                                    | remove outdated or incorrect entries                       |
-| `* * *`  | user    | search for a family member by name                                                                        | quickly find their details                                 |
-| `* * *`  | user    | add a profile picture for each family member                                                              | visually recognize them                                    |
-| `* * *`  | user    | store a family member’s contact details (phone, email, address)                                           | reach out to them easily                                   |
-| `* * *`  | user    | record a family member’s relationship to me in a friendly way (e.g., “Mom’s Brother” instead of just “Uncle”) | recall how we are connected                                |
-| `* * *`  | user    | add nicknames to a family member’s profile                                                                | remember what they are called in my family                 |
-| `* * *`  | user    | add notes about a family member (fun facts, shared memories and inside jokes)                             | have a reference for conversation starters                 |
-| `* *  `  | user    | sort my family members by birthday                                                                        | remember whose birthday is coming soon to buy them gifts   |
-| `* *  `  | user    | undo and redo changes in my address book                                                                  | make mistakes comfortably when using my address book       |
+| Priority | As a …​ | I want to …​                                                                                                   | So that I can…​                                          |
+|----------|---------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| `* * *`  | user    | add a family member to my address book                                                                         | keep track of relatives                                  |
+| `* * *`  | user    | delete a family member                                                                                         | remove outdated or incorrect entries                     |
+| `* * *`  | user    | search for a family member by name                                                                             | quickly find their details                               |
+| `* * *`  | user    | add a profile picture for each family member                                                                   | visually recognize them                                  |
+| `* * *`  | user    | store a family member’s contact details (phone, email, address)                                                | reach out to them easily                                 |
+| `* * *`  | user    | record a family member’s relationship to me in a friendly way (e.g., “Mom’s Brother” instead of just “Uncle”)  | recall how we are connected                              |
+| `* * *`  | user    | add nicknames to a family member’s profile                                                                     | remember what they are called in my family               |
+| `* * *`  | user    | add notes about a family member (fun facts, shared memories and inside jokes)                                  | have a reference for conversation starters               |
+| `* *  `  | user    | sort my family members by birthday                                                                             | remember whose birthday is coming soon to buy them gifts |
+| `* *  `  | user    | undo and redo changes in my address book                                                                       | make mistakes comfortably when using my address book     |
 
 
 
@@ -433,32 +433,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-## Use Case 3: Add a Custom Family Event  
+## Use Case 3: Search for a Family Member  
 **System**: WhoAreYouAgain?  
-**Use case**: UC03 - Add Custom Family Event  
-**Actor**: User  
-
-### Main Success Scenario (MSS):  
-1. User selects “Add Event” from the events section.  
-2. System requests event details (name, date, time, description, tagged family members).  
-3. User enters event details and confirms.  
-4. System saves the event and updates the event list.  
-   **Use case ends.**  
-
-### Extensions:  
-- **2a. User leaves mandatory fields empty.**  
-  - 2a1. System displays an error and prompts the user to enter the missing information.  
-  - Use case resumes from step 3.  
-
-- **3a. User cancels the action before confirmation.**  
-  - 3a1. System discards changes.  
-  - **Use case ends.**  
-
----
-
-## Use Case 4: Search for a Family Member in the Tree  
-**System**: WhoAreYouAgain?  
-**Use case**: UC04 - Search Family Member  
+**Use case**: UC03 - Search Family Member  
 **Actor**: User  
 
 ### Main Success Scenario (MSS):  
@@ -474,75 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-## Use Case 5: Export Family Directory as CSV  
-**System**: WhoAreYouAgain?  
-**Use case**: UC05 - Export Family Directory  
-**Actor**: User  
 
-### Main Success Scenario (MSS):  
-1. User selects the export option in settings.  
-2. System prompts user to confirm export.  
-3. User confirms.  
-4. System generates and downloads the CSV file.  
-   **Use case ends.**  
-
-### Extensions:  
-- **3a. User cancels the export.**  
-  - 3a1. System aborts the operation.  
-  - **Use case ends.**  
-
----
-
-## Use Case 6: View Family Tree Visualization  
-**System**: WhoAreYouAgain?  
-**Use case**: UC06 - View Family Tree  
-**Actor**: User  
-
-### Main Success Scenario (MSS):  
-1. User navigates to the family tree section.  
-2. System displays a hierarchical family tree visualization.  
-   **Use case ends.**  
-
-### Extensions:  
-- **2a. User zooms in or out.**  
-  - 2a1. System adjusts the view accordingly.  
-  - **Use case ends.**  
-
----
-
-## Use Case 7: Relationship Calculator  
-**System**: WhoAreYouAgain?  
-**Use case**: UC07 - Calculate Family Relationship  
-**Actor**: User  
-
-### Main Success Scenario (MSS):  
-1. User selects the relationship calculator feature.  
-2. System prompts the user to enter two family member names.  
-3. User enters names and confirms.  
-4. System calculates and displays their relationship (e.g., “First Cousin Once Removed”).  
-   **Use case ends.**  
-
-### Extensions:  
-- **3a. Entered names do not exist in the database.**  
-  - 3a1. System displays an error message.  
-  - **Use case ends.**  
-
----
-
-## Use Case 8: Auntie Name Translator  
-**System**: WhoAreYouAgain?  
-**Use case**: UC08 - Convert Name to Cultural Nickname  
-**Actor**: User  
-
-### Main Success Scenario (MSS):  
-1. User selects a family member’s profile.  
-2. System provides a culturally appropriate nickname based on predefined rules (e.g., "Auntie Mei" instead of "Lisa Tan").  
-   **Use case ends.**  
-
-### Extensions:  
-- **2a. No cultural nickname is available for the entered name.**  
-  - 2a1. System notifies the user that no nickname was found.  
-  - **Use case ends.**  
 
 ### Non-Functional Requirements
 
