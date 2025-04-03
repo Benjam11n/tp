@@ -27,6 +27,11 @@ public interface ReadOnlyCommandHistory {
     void resetNavigation();
 
     /**
+     * Set the navigation position in the command history.
+     */
+    void setIndex(int index);
+
+    /**
      * Returns true if there are previous commands to navigate to.
      */
     boolean canNavigateBackward();

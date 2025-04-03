@@ -40,6 +40,8 @@ public class DeleteCommand extends UndoableCommand implements ConfirmableCommand
 
     private List<Person> personsToDelete;
 
+    private List<Integer> originalIndices;
+
     public DeleteCommand(List<Index> targetIndices) {
         this.targetIndices = targetIndices;
     }
@@ -61,6 +63,10 @@ public class DeleteCommand extends UndoableCommand implements ConfirmableCommand
                 .map(targetIndex -> lastShownList.get(targetIndex.getZeroBased()))
                 .toList();
 
+        originalIndices = targetIndices.stream()
+                .map(Index::getZeroBased)
+                .toList();
+
         return new CommandResult(String.format(MESSAGE_CONFIRM_DELETE,
                 personsToDelete.stream()
                         .map(person -> person.getName().toString())
@@ -71,9 +77,11 @@ public class DeleteCommand extends UndoableCommand implements ConfirmableCommand
     public void undo(Model model) {
         requireNonNull(model);
         if (personsToDelete != null) {
-            for (Person person : personsToDelete) {
+            for (int i = 0; i < personsToDelete.size(); i++) {
+                Person person = personsToDelete.get(i);
+                int originalIndex = originalIndices.get(i);
                 if (!model.hasPerson(person)) {
-                    model.addPerson(person);
+                    model.addPersonAt(person, originalIndex);
                 }
             }
         }
@@ -87,6 +95,18 @@ public class DeleteCommand extends UndoableCommand implements ConfirmableCommand
                 model.deletePerson(person);
             }
         }
+    }
+
+    @Override
+    public String getCommandString() {
+        if (personsToDelete == null || personsToDelete.isEmpty()) {
+            return COMMAND_WORD + " <unknown person(s)>";
+        }
+
+        String summary = personsToDelete.stream()
+                .map(Person::toCommandSummary)
+                .collect(Collectors.joining(", "));
+        return COMMAND_WORD + " " + summary;
     }
 
     @Override

@@ -54,10 +54,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
 
+        model.addToCommandHistory(commandText);
+        saveToCommandHistory();
         if (isPendingConfirmation) {
             logger.info("Executing pending confirmation branch");
             commandResult = executeConfirmation(commandText);
-            saveState(commandText);
+            saveToAddressBook();
             return commandResult;
         }
 
@@ -73,24 +75,35 @@ public class LogicManager implements Logic {
             logger.info("Command requires confirmation: " + pendingConfirmation);
         }
 
-        saveState(commandText);
+        saveToAddressBook();
 
         return commandResult;
     }
 
-    private void saveState(String commandText) throws CommandException {
+    private void saveToCommandHistory() throws CommandException {
+        saveData(() -> storage.saveCommandHistory(model.getCommandHistory()), "command history");
+    }
+
+    private void saveToAddressBook() throws CommandException {
+        saveData(() -> storage.saveAddressBook(model.getAddressBook()), "address book");
+    }
+
+    private void saveData(DataSaveOperation operation, String dataType) throws CommandException {
         try {
-            storage.saveAddressBook(model.getAddressBook());
-            model.addToCommandHistory(commandText);
-            storage.saveCommandHistory(model.getCommandHistory());
-            logger.info("Data saved successfully.");
+            operation.save();
+            logger.info(dataType + " data saved successfully.");
         } catch (AccessDeniedException e) {
-            logger.severe("Permission error saving data: " + e.getMessage());
+            logger.severe("Permission error saving " + dataType + " data: " + e.getMessage());
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
-            logger.severe("IO error saving data: " + ioe.getMessage());
+            logger.severe("IO error saving " + dataType + " data: " + ioe.getMessage());
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
+    }
+
+    @FunctionalInterface
+    private interface DataSaveOperation {
+        void save() throws IOException;
     }
 
     /**

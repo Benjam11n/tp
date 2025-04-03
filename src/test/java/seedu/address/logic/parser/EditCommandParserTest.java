@@ -91,7 +91,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS_CHARACTERS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS_START_END); // invalid name
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS_CHARACTERS); // invalid email
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS_CHARACTERS); // invalid tag
 
@@ -106,7 +106,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS_CHARACTERS);
+                Name.MESSAGE_CONSTRAINTS_START_END);
 
         // Invalid nickname - too long
         assertParseFailure(parser, "1" + INVALID_NICKNAME_LENGTH_DESC, Nickname.MESSAGE_CONSTRAINTS_LENGTH);

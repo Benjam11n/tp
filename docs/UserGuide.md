@@ -18,14 +18,15 @@
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T14-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar whoareyouagain.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   <br>
    ![Ui](images/Ui.png)
-
+    <br>
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -43,7 +44,19 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Key Features at a Glance
+
+- ✅ **Speed meets simplicity**: Fast command-line input for power users, with a clean GUI for ease of use
+- 🔁 **Command history navigation**: Use ↑ and ↓ arrows to recall past commands effortlessly
+- 🗑️ **Confirmable actions**: Commands like `delete` and `clear` require confirmation to prevent accidents
+- 🖼️ **Image support with GUI editing**: Add `.png` profile pictures using `img/` in commands, or click the photo in the GUI to update it instantly
+- 📆 **Smart birthday sorting**: Use `list s/asc` or `list s/desc` to sort contacts by upcoming or distant birthdays
+- 💬 **Fuzzy name search**: Automatically suggests similar names when no exact match is found
+- ↩️ **Undo/Redo support**: Mistyped a command? Use `undo` and `redo` to step backward or forward through changes
+
+---
+
+# Features
 
 <box type="info" seamless>
 
@@ -61,87 +74,92 @@
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</box>
+<box type="warning" seamless>
+📎 <strong>Copying tip</strong>: If you're using a PDF, beware of line breaks when copying multi-line commands. Spaces may get lost!
 </box>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
+---
+## 📥 Managing Contacts
 
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `addn/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`
+Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
 
-### Name Requirements
+#### Name Requirements
 ✔ **Must start with a letter** (A-Z, a-z)  
 ✔ **Cannot end with a special character** (@, ., -, etc.)  
 ✔ **No consecutive special characters** (e.g., `--`, `@@`, `..`)
 
-💡 **All `/` must be escaped with `\` to be recognized correctly**
 
-E.g. **To include "s/o" in a name, type it as** `"s\/o"`
+<box type="tip" seamless>
+<strong>Escaping slashes:</strong> All <code>/</code> must be escaped with <code>\</code> to be recognized correctly.<br>
+E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>
+</box>
+<br>
+<br>
+<box type="tip" seamless>
+<strong>Tag multiplicity: You can insert up to 10 tags.</strong> 
+</box>
 
-[//]: # (<box type="tip" seamless>)
+#### Image Support:
+✔ **Only `.png` supported for now**  
+✔ **Use `img/<IMAGE_PATH>` to specify the image path**  
+✔ **Image path must be absolute**  
+<small>*(An absolute path is the full location from the system root, e.g., `/Users/alex/images/photo.png`)*</small>
 
-[//]: # ()
-[//]: # (**Tip:** A person can have any number of tags &#40;including 0&#41;)
 
-[//]: # (</box>)
+<box type="tip" seamless>
+Mac Tip: Use <code>pwd</code> in terminal to get full working directory
+</box>
 
 Examples:
-* `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 no/My favorite son t/son`
-* `add n/Betsy Crowe p/99999999 r/Other e/betsycrowe@example.com a/Newgate Prison b/2001-03-30 no/Son's girlfriend`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
+```
+add n/Nickie p/88888888 r/son 
+    e/nickie@gmail.com 
+    a/21 Lower Kent Ridge Rd, Singapore 119077 
+    nn/nickelodeon 
+    b/01-01-2001
+    no/My favorite son 
+    img//Users/nickie/sleep.png 
+    t/son
+```
+```
+add n/Betsy Crowe p/99999999 r/Other 
+    e/betsycrowe@example.com 
+    a/Newgate Prison 
+    b/03-30-2001 
+    no/Son's girlfriend
+```
 
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`
+**Format:** `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. <small>(This is the number shown next to each contact in the list.)<small>
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+**Examples:**
+*  `edit 1 p/91234567 e/johndoe@example.com`   
+    Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+</br>
+</br>
+*  `edit 2 n/Betsy Crower t/`   
+    Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+<box type="tip" seamless> To <strong>remove</strong> any optional field (e.g., nickname or birthday), simply leave the value blank. 
+</br>E.g., to remove a nickname: <code>edit 2 nn/</code> </box>
 
 ### Deleting a person: `delete`
 
@@ -158,31 +176,107 @@ Deletes the specified person(s) from the address book.
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1 3` deletes the 1st and 3rd persons in the results of the `find` command.
 
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the family book.
+
+**Format:**
+- `list` - Sorted by insertion order
+- `list s/asc` — Sorted by closest upcoming birthday<br>
+    <br>
+  <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
+    <br>
+- `list s/desc` — Sorted by farthest upcoming birthday <br>
+  <br>
+  <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
+    <br>
+
+---
+
+## 🔍 Searching
+### Locating persons by name: `find`
+
+Finds persons whose names match any of the given keywords. If no exact or partial matches are found, the app will automatically attempt a fuzzy search to suggest similar names.
+
+**Format:** `find KEYWORD [MORE_KEYWORDS]`
+
+* Performs an exact and partial match search first.
+  If no results are found, a fuzzy search will suggest similar names instead.   
+  E.g., `find Jon` can return names like `John`, `Jonathan`, or `Joni`.
+* The search is case-insensitive.  
+  E.g., `find hans` will match `Hans`
+* The order of the keywords does not matter.  
+  E.g. `find Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Prefix matching. `find Ber` will match `Bertha`, `Bernice`, `Bern` etc.
+* Persons matching at least one keyword will be returned (i.e. `OR` search).  
+  E.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+**Examples:**
+* `find Jon` returns `John Doe`, `Jonathan Sim`, `Joni Tan`
+* `find alex david` returns `Alex Yeoh`, `David Li`  
+* `find Mich` returns `Mick`, `Mach` if there is no name 
+</br>
+ 
+
+---
+
+## ⚙️ System Commands
+
+### Undoing the last command : `undo`
+
+Reverts the most recent supported command.
+
+**Supported commands:** `add`, `edit`, `delete`  
+Other commands like `find`, `list`, `clear`, and `help`, etc, cannot be undone.
+
+**Format:**  `undo`
+
+### Redoing the last undone command : `redo`
+
+Re-applies the most recent command that was undone using `undo`.
+
+🔄 `redo` only works if you’ve just called `undo`.  
+If there's nothing to redo, the command will do nothing.
+
+**Format:**  `redo`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+**Format:** `clear`
+
+### Viewing help : `help`
+
+Shows a help window with guidance on using the app.
+
+<img src="images/helpMessage.png" alt="Ui" height="40px" width="550px"> <br>
+    <br>
+
+**Format:** `help`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+**Format:** `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AddressBook and command history data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`, and command history is saved as `[JAR file location]/data/commandhistory.json`. Advanced users are welcome to update data directly by editing these data files.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data files make their format invalid, AddressBook will discard all data and start with an empty data file at the next run. This applies to both files independently - an invalid addressbook.json will cause contact data to be cleared, while an invalid commandhistory.json will cause command history to be cleared. Hence, it is recommended to take a backup of the files before editing them.<br>
+
+Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data files only if you are confident that you can update them correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -191,28 +285,31 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​` <br> e.g., `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 no/My favorite son`
-**Clear**  | `clear`
-**Delete** | `delete INDEX…​`<br> e.g., `delete 3`, `delete 1 2 4`
+**Add**    | `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​` <br> e.g., `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 no/My favorite son`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Delete** | `delete INDEX…​`<br> e.g., `delete 3`, `delete 1 2 4`
+**List**   | `list`<br>`list s/asc`<br>`list s/desc`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
+**Undo**   | `undo`<br>Reverts the most recent `add`, `edit`, or `delete` command
+**Redo**   | `redo`<br>Re-applies the most recently undone command (only if `undo` was used before)
+**Clear**  | `clear`
 **Help**   | `help`
+**Exit**  | `exit`

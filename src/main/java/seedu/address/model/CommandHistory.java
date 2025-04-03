@@ -110,6 +110,11 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     }
 
     @Override
+    public void setIndex(int index) {
+        this.currentIndex = index;
+    }
+
+    @Override
     public boolean canNavigateBackward() {
         return this.currentIndex < commandList.size();
     }

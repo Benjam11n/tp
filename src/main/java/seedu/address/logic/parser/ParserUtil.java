@@ -54,9 +54,6 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String input = name.trim();
-        if (!input.matches(INPUT_VALIDATION_REGEX)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS_CHARACTERS);
-        }
         String formattedName = formatName(input);
         formattedName = escapeRemover(formattedName);
         try {

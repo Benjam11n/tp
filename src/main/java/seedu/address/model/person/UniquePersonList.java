@@ -147,4 +147,18 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    /**
+     * Adds a person at the specified index.
+     *
+     * @param toAdd The person that needs to be added.
+     * @param index The index to insert the person at.
+     */
+    public void addAt(Person toAdd, int index) {
+        requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicatePersonException();
+        }
+        internalList.add(index, toAdd);
+    }
 }
