@@ -70,7 +70,7 @@
               <Label text="Commands" styleClass="section-header"/>
 
               <!-- Command Format Notes Block -->
-              <HBox spacing="10" alignment="TOP_LEFT" styleClass="paragraph-container" style="-fx-padding: 15px;">
+              <HBox spacing="10" styleClass="paragraph-container" style="-fx-padding: 15px;">
 
                 <!-- Info Icon -->
                 <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
@@ -78,7 +78,7 @@
                 </ImageView>
 
                 <!-- Format of Commands Block -->
-                <VBox alignment="TOP_LEFT" spacing="8">
+                <VBox spacing="8">
                   <Text text="Notes about command format: " style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                   <TextFlow style="-fx-background-radius: 10px; -fx-padding: 10px 10px 20px 10px; -fx-border-color: transparent transparent grey transparent; -fx-border-width: 0 0 1px 0;">
                     <Text text="You don't have to memorise these, we'll remind you where they're relevant but we recommend that you read these before diving into our commands!" style=" -fx-fill: white; -fx-font-size:14px"/>
@@ -207,13 +207,13 @@
                   </TextFlow>
 
                   <!-- Note Section Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <!-- Lightbulb Icon -->
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
                     <!-- Note Content -->
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• Fields indicated in brackets are optional, like [r/RELATIONSHIP]. This means that you can add a contact without indicating a relationship." style="-fx-fill: white; -fx-font-size:14px"/>
@@ -286,13 +286,13 @@
                   </TextFlow>
 
                   <!-- Note Section Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <!-- Lightbulb Icon -->
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
                     <!-- Note Content -->
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• Use " style="-fx-fill: white; -fx-font-size:14px"/>
@@ -375,15 +375,21 @@
                     <Text text="t/" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" without specifying any tags after it." style="-fx-fill: white;"/>
                   </TextFlow>
+                  <TextFlow styleClass="paragraph">
+                    <Text text="• " style="-fx-fill: white;"/>
+                    <Text text="Note this command can be undone  " style="-fx-fill: white;"/>
+                    <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text=" in order to revert edits you just made." style="-fx-fill: white;"/>
+                  </TextFlow>
 
                   <!-- Note Section Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <!-- Lightbulb Icon -->
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
                     <!-- Note Content -->
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• The edit command only changes the fields you specify - other fields remain unchanged." style="-fx-fill: white; -fx-font-size:14px"/>
@@ -445,13 +451,13 @@
                   </TextFlow>
 
                   <!-- Note Section Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <!-- Lightbulb Icon -->
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
                     <!-- Note Content -->
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• Undo works linearly - it can only reverse the most recent command" style="-fx-fill: white; -fx-font-size:14px"/>
@@ -526,13 +532,13 @@
                   </TextFlow>
 
                   <!-- Note Section Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <!-- Lightbulb Icon -->
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
                     <!-- Note Content -->
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
@@ -629,13 +635,13 @@
                   </TextFlow>
 
                   <!-- Note Section Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <!-- Lightbulb Icon -->
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
                     <!-- Note Content -->
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• Use multiple keywords to broaden your search." style="-fx-fill: white; -fx-font-size:14px"/>
@@ -692,13 +698,13 @@
                   </TextFlow>
 
                   <!-- Note Section Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <!-- Lightbulb Icon -->
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
                     <!-- Note Content -->
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• The list command displays all contacts in the order they were added to the address book." style="-fx-fill: white; -fx-font-size:14px"/>
@@ -716,11 +722,11 @@
                   </TextFlow>
 
                   <!-- Birthday Reminder Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box" style="-fx-background-color: #1d3b75;">
+                  <HBox spacing="10"  styleClass="note-box" style="-fx-background-color: #1d3b75;">
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-partying-face.png"/>
                     </ImageView>
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Tired of missing birthdays?" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• Introducing the " style="-fx-fill: white; -fx-font-size:14px"/>
@@ -782,11 +788,11 @@
                   </TextFlow>
 
                   <!-- Warning Block -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box" style="-fx-background-color: #751d1d;">
+                  <HBox spacing="10"  styleClass="note-box" style="-fx-background-color: #751d1d;">
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-warning.png"/>
                     </ImageView>
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Warning:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• This action cannot be undone. All contacts will be permanently deleted." style="-fx-fill: white; -fx-font-size:14px"/>
@@ -833,11 +839,11 @@
                   </TextFlow>
 
                   <!-- Help Shortcut Note -->
-                  <HBox spacing="10" alignment="TOP_LEFT" styleClass="note-box">
+                  <HBox spacing="10"  styleClass="note-box">
                     <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                       <Image url="@/images/icons8-lightbulb.png"/>
                     </ImageView>
-                    <VBox alignment="TOP_LEFT" spacing="5">
+                    <VBox  spacing="5">
                       <Text text="Shortcut:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
                         <Text text="• Press " style="-fx-fill: white; -fx-font-size:14px"/>
