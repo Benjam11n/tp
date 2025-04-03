@@ -24,8 +24,9 @@
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar whoareyouagain.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   <br>
    ![Ui](images/Ui.png)
-
+    <br>
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -88,7 +89,7 @@
 
 Adds a person to the address book.
 
-Format: `addn/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​`
+Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
 
 #### Name Requirements
 ✔ **Must start with a letter** (A-Z, a-z)  
@@ -97,8 +98,13 @@ Format: `addn/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/N
 
 
 <box type="tip" seamless>
-💡 <strong>Escaping slashes:</strong> All <code>/</code> must be escaped with <code>\</code> to be recognized correctly.<br>
+<strong>Escaping slashes:</strong> All <code>/</code> must be escaped with <code>\</code> to be recognized correctly.<br>
 E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>
+</box>
+<br>
+<br>
+<box type="tip" seamless>
+<strong>Tag multiplicity: You can insert up to 10 tags.</strong> 
 </box>
 
 #### Image Support:
@@ -106,6 +112,7 @@ E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>
 ✔ **Use `img/<IMAGE_PATH>` to specify the image path**  
 ✔ **Image path must be absolute**  
 <small>*(An absolute path is the full location from the system root, e.g., `/Users/alex/images/photo.png`)*</small>
+
 
 <box type="tip" seamless>
 Mac Tip: Use <code>pwd</code> in terminal to get full working directory
@@ -137,7 +144,6 @@ Edits an existing person in the address book.
 **Format:** `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. <small>(This is the number shown next to each contact in the list.)<small>
-* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -177,8 +183,14 @@ Shows a list of all persons in the family book.
 
 **Format:**
 - `list` - Sorted by insertion order
-- `list s/asc` — Sorted by closest upcoming birthday
-- `list s/desc` — Sorted by farthest upcoming birthday
+- `list s/asc` — Sorted by closest upcoming birthday<br>
+    <br>
+  <img src="images/UpcomingBirthdays.png" alt="Ui" height="200px" width="300px"> <br>
+    <br>
+- `list s/desc` — Sorted by farthest upcoming birthday <br>
+  <br>
+  <img src="images/DistantBirthdays.png" alt="Ui" height="200px" width="300px"> <br>
+    <br>
 
 ---
 
@@ -191,21 +203,22 @@ Finds persons whose names match any of the given keywords. If no exact or partia
 
 * Performs an exact and partial match search first.
   If no results are found, a fuzzy search will suggest similar names instead.   
-  E.g., searching for `Jon` can return names like `John`, `Jonathan`, or `Joni`.
+  E.g., `find Jon` can return names like `John`, `Jonathan`, or `Joni`.
 * The search is case-insensitive.  
-  E.g., `hans` will match `Hans`
+  E.g., `find hans` will match `Hans`
 * The order of the keywords does not matter.  
-  E.g. `Hans Bo` will match `Bo Hans`
+  E.g. `find Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Prefix matching. `find Ber` will match `Bertha`, `Bernice`, `Bern` etc.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).  
   E.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 **Examples:**
 * `find Jon` returns `John Doe`, `Jonathan Sim`, `Joni Tan`
 * `find alex david` returns `Alex Yeoh`, `David Li`  
+* `find Mich` returns `Mick`, `Mach` if there is no name 
 </br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+ 
 
 ---
 
@@ -239,7 +252,8 @@ Clears all entries from the address book.
 
 Shows a help window with guidance on using the app.
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" alt="Ui" height="250px" width="300px"> <br>
+    <br>
 
 **Format:** `help`
 

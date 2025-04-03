@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Email {
 
-    public static final int MAX_LENGTH = 100;
+    public static final int MAX_LENGTH = 254;
     public static final String MESSAGE_CONSTRAINTS_LENGTH = "Emails can be at most " + MAX_LENGTH
             + " characters long";
     private static final String SPECIAL_CHARACTERS = "+_.-";
