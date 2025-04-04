@@ -237,7 +237,7 @@ Step 4: Undoing the DeleteCommand
 
 Step 5: Redoing the DeleteCommand
 
-<puml src="diagrams/RedoSequenceDiagram-Logic.puml" alt="RedoSequenceDiagram" />
+<puml src="diagrams/RedoSequenceDiagram.puml" alt="RedoSequenceDiagram" />
 
 - Action:
     - The user decides to redo the delete command using the ```redo``` command.
