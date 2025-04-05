@@ -621,6 +621,24 @@ testers are expected to do more *exploratory* testing.
     1. Test case: undo or redo repeatedly after no more history <br>
     Expected: Error message "Nothing to undo!" or "Nothing to redo!" displayed.
 
+### Command History
+
+1. Navigating command history
+
+    1. Prerequisites: At least two different commands (e.g., list, find Alice) have been executed.
+
+    1. Test case: Press Up arrow key after entering a command<br>
+    Expected: Previous command appears in command box.
+
+    2. Test case: Press Down arrow key after pressing Up arrow key multiple times<br>
+    Expected: More recent command appears in command box.
+
+    3. Test case: Enter both valid and invalid commands, then use Up/Down keys<br>
+    Expected: All commands (valid and invalid) are accessible in history. Invalid commands don't clear the command box.
+
+    4. Other scenarios to try: Navigate to oldest command and press Up again, navigate to most recent command and press Down<br>
+    Expected: No change when pressing Up at the oldest command. The command box is cleared after pressing Down on the most recent command.
+
 ### Help and Exit
 
 1. Help command
