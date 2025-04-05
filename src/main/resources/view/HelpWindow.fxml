@@ -19,7 +19,7 @@
         <VBox styleClass="header-container">
           <HBox styleClass="title-container">
             <Label text="who-are-you-again?" styleClass="app-title"/>
-            <Label text="v1.5" styleClass="version-label"/>
+            <Label text="v1.6" styleClass="version-label"/>
           </HBox>
           <Label text="docs" styleClass="docs-label"/>
         </VBox>

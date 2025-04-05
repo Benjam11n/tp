@@ -36,7 +36,7 @@
                 -fx-font-size: 16px;
               </style>
             </Label>
-            <Label text="v1.5" styleClass="title-label">
+            <Label text="v1.6" styleClass="title-label">
               <style>
                 -fx-font-family: 'Space Mono';
                 -fx-font-size: 10px;
