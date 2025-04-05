@@ -128,6 +128,8 @@ E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>
 Mac Tip: Use <code>pwd</code> in terminal to get full working directory
 </box>
 
+<br>
+
 Examples:
 ```
 add n/Nickie p/88888888 r/son 
