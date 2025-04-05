@@ -85,6 +85,16 @@
 ---
 ## 📥 Managing Contacts
 
+<box type="info" seamless>
+
+**Detecting Duplicate Persons:**<br>
+
+* The app detects duplicate persons based on a case-insensitive comparison of their names only.
+* E.g., `John Doe`, `john doe`, and `JOHN DOE` are all considered the same person.
+* If an `add` or `edit` command results in a duplicate person, the command would be rejected with an error message .
+
+</box>
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -263,6 +273,17 @@ Shows a help window with guidance on using the app.
 Exits the program.
 
 **Format:** `exit`
+
+### Navigating the Command History
+The application keeps track of the past 100 commands you've previously entered, allowing you to easily recall and reuse them.
+
+**Usage:**
+* Press the `Up` arrow key to access previous commands in reverse chronological order.
+* Press the `Down` arrow key to navigate forward through the command history.
+* Command history includes both valid and invalid commands.
+* When you reach the most recent command, pressing `Down` will clear the command box.
+
+This feature is particularly useful when you need to repeat commands with minor modifications or when you want to correct a previously entered command.
 
 ### Saving the data
 
