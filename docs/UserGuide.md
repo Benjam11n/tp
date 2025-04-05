@@ -91,7 +91,7 @@
 
 * The app detects duplicate persons based on a case-insensitive comparison of their names only.
 * E.g., `John Doe`, `john doe`, and `JOHN DOE` are all considered the same person.
-* If an `add` or `edit` command results in a duplicate person, the command would be rejected with an error message .
+* If an `add` or `edit` command results in a duplicate person, the command would be rejected with an error message.
 
 </box>
 
