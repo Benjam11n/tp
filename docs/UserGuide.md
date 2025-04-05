@@ -203,6 +203,10 @@ Shows a list of all persons in the family book.
   <br>
   <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
+  
+<box type="warning" seamless>
+When you edit a person's birthday while viewing a birthday-sorted list (`list s/asc` or `list s/desc`), the order of people in the list will update automatically based on the new birthday information. This might cause the edited person to appear in a different position in the list. Use `list` to restore the original order.
+</box>
 
 ---
 
