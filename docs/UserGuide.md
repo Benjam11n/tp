@@ -229,7 +229,7 @@ Finds persons whose names match any of the given keywords. If no exact or partia
 * `find Jon` returns `John Doe`, `Jonathan Sim`, `Joni Tan`
 * `find alex david` returns `Alex Yeoh`, `David Li`  
 * `find Mich` returns `Mick`, `Mach` if there is no name
-  </br>
+</br>
 
 <box type="warning" seamless>
 When you edit a person's name while in a filtered view (after using `find`), the person card may disappear from the current view if their new name no longer matches the search criteria. Use `list` to see all contacts again.
