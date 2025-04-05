@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "Developer Guide"
-    pageNav: 3
+  title: "Developer Guide"
+  pageNav: 3
 ---
 
 
@@ -14,7 +14,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is adapted from AB3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -237,7 +237,7 @@ Step 4: Undoing the DeleteCommand
 
 Step 5: Redoing the DeleteCommand
 
-<puml src="diagrams/RedoSequenceDiagram-Logic.puml" alt="RedoSequenceDiagram" />
+<puml src="diagrams/RedoSequenceDiagram.puml" alt="RedoSequenceDiagram" />
 
 - Action:
     - The user decides to redo the delete command using the ```redo``` command.
@@ -450,8 +450,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - **Use case ends.**  
 
 ---
-
-
 
 ### Non-Functional Requirements
 
