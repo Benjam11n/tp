@@ -560,10 +560,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: At least one person in the list.
 
-    1. Test case: `list asc`<br>
+    1. Test case: `list s/asc`<br>
        Expected: Persons listed in order of soonest upcoming birthday.
 
-    1. Test case: `list desc`<br>
+    1. Test case: `list s/desc`<br>
        Expected: Persons listed with furthest birthdays first.
 
     1. Other incorrect delete commands to try: `list 1`, `list y/` (where y is an unknown field)<br>
@@ -580,12 +580,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `clear`<br>
        Expected: Confirmation message pops up. No action occurs when user enters `n`.
-
-    1. Test case: `clear 1`<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete commands to try: `clear name`, `clear 1`<br>
-       Expected: Similar to previous.
 
 ### Finding persons
 
