@@ -664,3 +664,12 @@ testers are expected to do more *exploratory* testing.
     1. Re-run the application.
 
     1. Address book contains contacts from the modified savedata folder.
+
+---
+
+### Planned Enhancements
+
+Team Size: 5
+
+1. Currently, the undo message for edit commands does not specify which field was reverted. 
+We plan to enhance the message to show the specific field and value changed to improve clarity for the user.
