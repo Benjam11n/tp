@@ -262,7 +262,7 @@ public class ParserUtil {
         // Check for case-insensitive duplicates
         Set<String> lowerCaseTags = new HashSet<>();
         for (String tagName : tags) {
-            String lowerCaseTag = tagName.toLowerCase();
+            String lowerCaseTag = tagName.toLowerCase().trim();
             if (lowerCaseTags.contains(lowerCaseTag)) {
                 throw new ParseException(Tag.MESSAGE_DUPLICATE_TAG + tagName);
             }
