@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -233,7 +233,7 @@ Step 4: Undoing the DeleteCommand
       - Since it can, ```CommandTracker.getInstance().popUndo()``` is called to pop the command from the undo stack.
       - Subsequently, this command is also pushed to the redo stack.
   - The ```DeleteCommand#redo``` method is invoked on the last ```delete``` command and restores the deleted person.
-  - `undo` is still available (for the intial ```add``` command) and `redo` is available since delete has been undone.
+  - `undo` is still available (for the initial ```add``` command) and `redo` is available since delete has been undone.
 
 Step 5: Redoing the DeleteCommand
 
@@ -250,7 +250,7 @@ Step 5: Redoing the DeleteCommand
     - ```CommandTracker.canRedo()``` is called to see if the command can be redone.
         - Since it can, ```CommandTracker.getInstance().popRedo()``` is called to pop the command from the redo stack.
     - The ```DeleteCommand#redo``` method is invoked on the last ```delete``` command and deletes the person again.
-    - `undo` is still available (for the intial ```add``` command) and `redo` is no longer available since delete has been redone.
+    - `undo` is still available (for the initial ```add``` command) and `redo` is no longer available since delete has been redone.
 
 **Note:** At this point, the user should be able to notice that the `undo` and `redo` commands can be called in a circular manner i.e. ```undo -> redo -> undo -> ...``` 
 
