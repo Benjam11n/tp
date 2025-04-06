@@ -611,14 +611,14 @@
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Only the name is searched." style="-fx-fill: white;"/>
+                    <Text text="Only the name field is searched." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Only full words will be matched e.g. " style="-fx-fill: white;"/>
-                    <Text text="Han" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
-                    <Text text=" will not match " style="-fx-fill: white;"/>
-                    <Text text="Hans" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="Prefixes will be matched e.g. " style="-fx-fill: white;"/>
+                    <Text text="Ber" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text=" will match " style="-fx-fill: white;"/>
+                    <Text text="Bertha, Bernice and Bern" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
