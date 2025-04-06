@@ -165,15 +165,15 @@
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Must start with a letter (A-Z, a-z)" style="-fx-fill: white;"/>
+                    <Text text="Must start with a letter (A-Z, a-z)." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Cannot end with a special character (@, ., -, etc.)" style="-fx-fill: white;"/>
+                    <Text text="Cannot end with a special character (@, ., -, etc.)." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="No consecutive special characters (e.g., --, @@, ..)" style="-fx-fill: white;"/>
+                    <Text text="No consecutive special characters (e.g., --, @@, ..)." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -208,7 +208,7 @@
                         <Text text=" to be recognized correctly." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="  E.g. To include " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="  e.g. To include " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="s/o" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" in a name, type it as " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="s\/o" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
@@ -410,21 +410,21 @@
 
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Reverses the most recent change made to the address book" style="-fx-fill: white;"/>
+                    <Text text="Reverses the most recent change made to the address book." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Works by reverting to a previously saved state in the command history" style="-fx-fill: white;"/>
+                    <Text text="Works by reverting to a previously saved state in the command history." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Will display " style="-fx-fill: white;"/>
                     <Text text="Nothing to undo!" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-family: 'DejaVu Sans';"/>
-                    <Text text=" if there are no changes to reverse" style="-fx-fill: white;"/>
+                    <Text text=" if there are no changes to reverse." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Only affects changes made since the last app launch" style="-fx-fill: white;"/>
+                    <Text text="Only affects changes made since the last app launch." style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <!-- Note Section Block -->
@@ -437,10 +437,29 @@
                     <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
-                        <Text text="• Undo works linearly - it can only reverse the most recent command" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• Undo works linearly - it can only reverse the most recent command." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="• The undo/redo history persists even when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• The undo/redo history does not persist when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
+                      </TextFlow>
+                    </VBox>
+                  </HBox>
+
+                  <!-- Warning Block -->
+                  <HBox spacing="10"  styleClass="note-box" style="-fx-background-color: #751d1d;">
+                    <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
+                      <Image url="@/images/icons8-warning.png"/>
+                    </ImageView>
+                    <VBox  spacing="5">
+                      <Text text="Warning:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
+                      <TextFlow>
+                        <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="undo" styleClass="code-block"/>
+                        <Text text="  does not work with " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="clear" styleClass="code-block"/>
+                        <Text text=". All contacts are permanently lost after " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="clear" styleClass="code-block"/>
+                        <Text text="." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -454,14 +473,14 @@
                     <Text text="delete 1" styleClass="code-block"/>
                     <Text text=" followed by " style="-fx-fill: white;"/>
                     <Text text="undo" styleClass="code-block"/>
-                    <Text text=" - Restores the deleted contact" style="-fx-fill: white;"/>
+                    <Text text=" - Restores the deleted contact." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="edit 2 n/James Lee" styleClass="code-block"/>
                     <Text text=" followed by " style="-fx-fill: white;"/>
                     <Text text="undo" styleClass="code-block"/>
-                    <Text text=" - Reverts the name change" style="-fx-fill: white;"/>
+                    <Text text=" - Reverts the name change." style="-fx-fill: white;"/>
                   </TextFlow>
                 </VBox>
               </VBox>
@@ -487,23 +506,25 @@
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Reverses the effect of the most recent " style="-fx-fill: white;"/>
                     <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
-                    <Text text=" command" style="-fx-fill: white;"/>
+                    <Text text=" command." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Only works if the previous command was " style="-fx-fill: white;"/>
                     <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Will display " style="-fx-fill: white;"/>
                     <Text text="Nothing to redo!" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-family: 'DejaVu Sans';"/>
-                    <Text text=" if there are no undone changes to reapply" style="-fx-fill: white;"/>
+                    <Text text=" if there are no undone changes to reapply." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Maintains the same linear history as " style="-fx-fill: white;"/>
                     <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <!-- Note Section Block -->
@@ -520,10 +541,10 @@
                         <Text text="redo" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" must be used immediately after " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="undo" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" - any other command will clear the redo history" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" - any other command will clear the redo history." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="• The undo/redo history persists even when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• The undo/redo history does not persist when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -539,7 +560,7 @@
                     <Text text="undo" styleClass="code-block"/>
                     <Text text=" → " style="-fx-fill: white;"/>
                     <Text text="redo" styleClass="code-block"/>
-                    <Text text=" - Deletes the contact again" style="-fx-fill: white;"/>
+                    <Text text=" - Deletes the contact again." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -548,7 +569,7 @@
                     <Text text="undo" styleClass="code-block"/>
                     <Text text=" → " style="-fx-fill: white;"/>
                     <Text text="redo" styleClass="code-block"/>
-                    <Text text=" - Reapplies the name change" style="-fx-fill: white;"/>
+                    <Text text=" - Reapplies the name change." style="-fx-fill: white;"/>
                   </TextFlow>
                 </VBox>
               </VBox>
@@ -578,6 +599,7 @@
                     <Text text="hans" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" will match " style="-fx-fill: white;"/>
                     <Text text="Hans" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -585,6 +607,7 @@
                     <Text text="Hans Bo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" will match " style="-fx-fill: white;"/>
                     <Text text="Bo Hans" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -596,6 +619,7 @@
                     <Text text="Han" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" will not match " style="-fx-fill: white;"/>
                     <Text text="Hans" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -607,6 +631,7 @@
                     <Text text="Hans Gruber" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=", " style="-fx-fill: white;"/>
                     <Text text="Bo Yang" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <!-- Note Section Block -->
@@ -643,6 +668,7 @@
                     <Text text="john" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" and " style="-fx-fill: white;"/>
                     <Text text="John Doe" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -651,6 +677,7 @@
                     <Text text="Alex Yeoh" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=", " style="-fx-fill: white;"/>
                     <Text text="David Li" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
+                    <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
                 </VBox>
               </VBox>
@@ -716,14 +743,14 @@
                         <Text text="list" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" integrates " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="sort" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" to show contacts by birthday order" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" to show contacts by birthday order." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
                         <Text text="• View in " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="asc" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" (ascending) or " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="desc" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" (descending) order" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" (descending) order." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
                         <Text text="• We'll highlight upcoming birthdays so you never miss a greeting!" style="-fx-fill: white; -fx-font-size:14px"/>
@@ -734,12 +761,12 @@
                       <TextFlow styleClass="paragraph">
                         <Text text="• " style="-fx-fill: white;"/>
                         <Text text="list s/asc" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" - Shows contacts sorted by upcoming birthdays (next birthday first)" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" - Shows contacts sorted by upcoming birthdays (next birthday first)." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow styleClass="paragraph">
                         <Text text="• " style="-fx-fill: white;"/>
                         <Text text="list s/desc" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" - Shows contacts sorted by most recent birthdays" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" - Shows contacts sorted by most recent birthdays." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -771,7 +798,7 @@
                     <VBox  spacing="5">
                       <Text text="Warning:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
-                        <Text text="• This action cannot be undone. All contacts will be permanently deleted." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• This action cannot be undone after confirmation. All contacts will be permanently deleted." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
