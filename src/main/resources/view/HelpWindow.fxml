@@ -99,7 +99,7 @@
                     <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
                     <Text text="Extraneous parameters for simple commands (" style="-fx-fill: white; -fx-font-size:14px"/>
                     <Text text="help" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
-                    <Text text="and " style="-fx-fill: white; -fx-font-size:14px"/>
+                    <Text text=" and " style="-fx-fill: white; -fx-font-size:14px"/>
                     <Text text="exit" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
                     <Text text=") are ignored." style="-fx-fill: white; -fx-font-size:14px"/>
                   </TextFlow>
