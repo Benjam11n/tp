@@ -14,7 +14,8 @@
 
 ## **Acknowledgements**
 
-This project is adapted from AB3.
+- This project is adapted from the AB3 project created by the [SE-EDU initiative](https://se-education.org).
+- Third-party libraries used: JavaFX, Jackson, JUnit5.
 
 --------------------------------------------------------------------------------------------------------------------
 

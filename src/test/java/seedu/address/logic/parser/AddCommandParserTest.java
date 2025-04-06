@@ -170,7 +170,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(AddCommandParser.NON_EMPTY_PREAMBLE + MESSAGE_INVALID_COMMAND_FORMAT,
                         AddCommand.MESSAGE_USAGE));
     }
@@ -191,7 +191,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + INVALID_IMGPATH_DESC, expectedMessage);
     }
-
 
     @Test
     public void parse_escapedPrefixInValue_success() {
@@ -227,5 +226,28 @@ public class AddCommandParserTest {
         String nicknameWithEscapedBackslash = " " + PREFIX_NICKNAME + "C:\\\\Users\\\\Bob";
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_FRIEND + nicknameWithEscapedBackslash, new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_escapedCharactersInPhoneField_success() {
+        // Create a person with phone containing escaped characters
+        Person expectedPerson = new PersonBuilder().withName(VALID_NAME_AMY)
+                .withPhone("1234\\/5678").withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+
+        // Command with escaped slash in phone field
+        String phoneWithEscapedSlash = " " + PREFIX_PHONE + "1234\\/5678";
+        assertParseSuccess(parser, NAME_DESC_AMY + phoneWithEscapedSlash + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // Create a person with phone containing escaped backslashes
+        Person expectedPerson2 = new PersonBuilder().withName(VALID_NAME_BOB)
+                .withPhone("123\\\\456").withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND).build();
+
+        // Command with escaped backslashes in phone field
+        String phoneWithEscapedBackslash = " " + PREFIX_PHONE + "123\\\\456";
+        assertParseSuccess(parser, NAME_DESC_BOB + phoneWithEscapedBackslash + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson2));
     }
 }
