@@ -219,7 +219,7 @@
                   <!-- Example Block -->
                   <TextFlow styleClass="paragraph">
                     <Text text="Example: " style="-fx-fill: white; -fx-font-weight: bold;"  wrappingWidth="200"/>
-                    <Text text="add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 img/C:/Nickie.png no/My favorite son" styleClass="code-block"/>
+                    <Text text="add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/01-01-2001 img/C:/Nickie.png no/My favorite son" styleClass="code-block"/>
                   </TextFlow>
                 </VBox>
               </VBox>
