@@ -94,12 +94,14 @@ Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/
 #### Name Requirements
 ✔ **Must start with a letter** (A-Z, a-z)  
 ✔ **Cannot end with a special character** (@, ., -, etc.)  
-✔ **No consecutive special characters** (e.g., `--`, `@@`, `..`)
+✔ **No consecutive special characters excluding escaping slashes** (e.g., `--`, `@@`, `..`)
 
 
 <box type="tip" seamless>
-<strong>Escaping slashes:</strong> All <code>/</code> must be escaped with <code>\</code> to be recognized correctly.<br>
-E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>
+<strong>Escaping slashes:</strong> In the event you wish to have a name with a reserved field (e.g. n/). You can do so by using the <code>\</code> character<br>
+E.g. To include <code>"n/"</code> in a name, type it as <code>"\n/"</code>
+Note: Redundant or excessive usage of this character may seem like it violates the "No consecutive special character" rule of the name requirement.<br>
+However, the user must recognise that an input such as this: <code>xo\\p/9999\\-\\awow</code> is reduced to <code>xo\p/9999\-\awow</code> and further reduced to <code>xop/9999-awow</code> which satisfies the name constraints.
 </box>
 <br>
 <br>
