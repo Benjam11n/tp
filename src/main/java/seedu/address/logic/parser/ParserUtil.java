@@ -259,7 +259,15 @@ public class ParserUtil {
         if (tags.size() > Tag.MAX_NUM) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS_NUM);
         }
-
+        // Check for case-insensitive duplicates
+        Set<String> lowerCaseTags = new HashSet<>();
+        for (String tagName : tags) {
+            String lowerCaseTag = tagName.toLowerCase();
+            if (lowerCaseTags.contains(lowerCaseTag)) {
+                throw new ParseException(Tag.MESSAGE_DUPLICATE_TAG + tagName);
+            }
+            lowerCaseTags.add(lowerCaseTag);
+        }
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
