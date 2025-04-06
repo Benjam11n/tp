@@ -232,7 +232,7 @@ public class AddCommandParserTest {
     public void parse_escapedCharactersInPhoneField_success() {
         // Create a person with phone containing escaped characters
         Person expectedPerson = new PersonBuilder().withName(VALID_NAME_AMY)
-                .withPhone("1234\\/5678").withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPhone("1234/5678").withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
 
         // Command with escaped slash in phone field
