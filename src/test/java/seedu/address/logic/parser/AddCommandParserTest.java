@@ -137,7 +137,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MISSING_COMPULSORY_PARAM
+        String expectedMessage = String.format(MISSING_COMPULSORY_PARAM + "\n"
                 + MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix

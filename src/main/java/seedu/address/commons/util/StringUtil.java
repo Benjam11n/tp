@@ -68,6 +68,8 @@ public class StringUtil {
         }
     }
 
+    //Generating methods related to calculating similarity index were aided by Intellij AIAssistant
+
     /**
      * Computes a refined similarity index between two strings.
      * Combines multiple factors for more accuracy.
