@@ -258,7 +258,6 @@ Step 5: Redoing the DeleteCommand
 1. Ensure undo / redo restore order in any state
    1. This applies to the states after list and find have been executed followed by an `UndoableCommand`
 2. Implement undo / redo for `clear`
-3. 
 
 ### \[Proposed\] Possible Undo/Redo Implementation
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:

@@ -98,9 +98,10 @@ Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/
 
 
 <box type="tip" seamless>
-<strong>Escaping slashes:</strong> We recommend all <code>/</code>  be escaped with <code>\</code> to be recognized correctly. Unescaped <code>/</code> may lead to undefined behaviours.<br>
-E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>
+<strong>Escaping slashes:</strong> We recommend all <code>/</code>  be escaped with <code>\</code> to be recognized correctly. Unescaped <code>/</code> may lead to undefined behaviours. E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>.
 </box>
+ Note: All <code>\</code> will be removed in names. E.g. <code>test\\\/name</code> will be converted to <code>test/name</code>
+
 <br>
 <br>
 <box type="tip" seamless>
