@@ -686,8 +686,9 @@ testers are expected to do more *exploratory* testing.
 
 Team Size: 5
 
-1. Currently, the `undo` message for edit commands does not specify which field was reverted. 
+1. **Make `undo` message for edit commands more specific:** Currently, the message only shows the command and name of the person being edited which is too general.
 We plan to enhance the message to show the specific field and value changed to improve clarity for the user.
-2. Ensure `undo` / `redo` restore order in any state
-    1. This applies to the states after list and find have been executed followed by an `UndoableCommand`
-3. Implement undo / redo for `clear`
+2. **Ensure `undo` / `redo` restore order in any state:** Currently, the order is preserved when `undo` and `redo` is used in its base form with no search filters (i.e. from `list` or `find`) applied. 
+This applies to the states after list and find have been executed followed by an `UndoableCommand`. We plan to enhance `undo` and `redo` to preserve the order with or without search filters.
+3. **Implement `undo` / `redo` for `clear`:** Currently, `undo` / `redo` are only supported by `edit`, `add` and `delete`. 
+We plan to extend this functionality to `clear` as it will be useful for this "dangerous" command.
