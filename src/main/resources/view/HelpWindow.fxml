@@ -319,7 +319,7 @@
 
                 <TextFlow styleClass="paragraph">
                   <Text text="Syntax: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                  <Text text="edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​" styleClass="code-block"/>
+                  <Text text="edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [[t/TAG]…​" styleClass="code-block"/>
                 </TextFlow>
 
                 <VBox spacing="20" alignment="CENTER_LEFT">
