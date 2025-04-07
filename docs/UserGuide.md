@@ -342,6 +342,19 @@ Latin and non-Latin characters, i.e. not using the two in one word. Our fuzzy se
 
 # Person Fields Summary
 
+<box type="tip" seamless>
+<strong>Escaping slashes:</strong> We recommend escaping forward slashes (<code>/</code>) with a backslash (<code>\</code>) when they might be interpreted as command prefixes.
+
+For example:
+- If you want <code>"n/a"</code> in a nickname field, type it as <code>"n\\/a"</code> to avoid it being interpreted as the name prefix
+
+Note: Backslashes will only be removed when they appear immediately before a forward slash. For example, <code>name\/n\/slashes</code> will be converted to <code>name/n/slashes</code>.
+
+<strong>Where backslashes are allowed:</strong>
+- <strong>Not allowed in names</strong> except when used to escape forward slashes
+- <strong>Allowed in phone numbers, nicknames, and notes</strong> (but will be removed if they appear before a forward slash)
+</box>
+
 | Field        | Prefix | Description                                                                              | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                      | Examples                                         |
 |--------------|--------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
 | Name         | `n/`   | Full name of the person and [used for duplicate detection](#detecting-duplicate-persons) | • Required<br>• Max 150 characters<br>• Must start with a letter<br>• Can contain letters, digits, spaces<br>• Allowed special characters: `@`, `.`, `,`, `!`, `'`, `/`, `-`<br>• No consecutive special characters<br>• Cannot start or end with special characters                                                                                                                                                             | `John Smith`, `Maria O'Brien`, `Lee-Wang`        |
@@ -374,7 +387,7 @@ Latin and non-Latin characters, i.e. not using the two in one word. Our fuzzy se
 --------------------------------------------------------------------------------------------------------------------
 
 
-### Glossary
+# Glossary
 
 * **CLI (Command Line Interface)**: A text-based interface where users interact with the application by typing commands.
 * **GUI (Graphical User Interface)**: The visual elements of the application (buttons, images, windows) that users can interact with.
@@ -383,3 +396,5 @@ Latin and non-Latin characters, i.e. not using the two in one word. Our fuzzy se
 * **Prefix**: Special symbols (like n/, p/, e/) that indicate what type of information follows them in a command.
 * **Fuzzy search**: A search technique that finds items even when the search term doesn't exactly match, accounting for typos or similar spellings.
 * **Command history**: A record of previously used commands that can be accessed using the up and down arrow keys.
+* **Domain**: The part of an email address after the @ symbol that identifies the email service provider (e.g., gmail.com, yahoo.com).
+* **Top-level domain (TLD)**: The last part of a domain name, such as .com, .org, .edu, or country codes like .uk or .sg.
