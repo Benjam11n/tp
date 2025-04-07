@@ -58,12 +58,6 @@ public class ListCommand extends Command {
                 person -> person.getBirthday()
                         .map(b -> {
                             LocalDate birthDate = b.getLocalDate();
-                            if (birthDate == null) {
-                                if (descending) {
-                                    return Long.MIN_VALUE;
-                                }
-                                return Long.MAX_VALUE;
-                            }
 
                             MonthDay birthdayMonthDay = MonthDay.from(birthDate);
                             MonthDay currentMonthDay = MonthDay.from(today);

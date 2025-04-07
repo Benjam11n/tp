@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -8,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -136,6 +138,5 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(ListCommand.SortOrder.DESCENDING),
                 model, ListCommand.MESSAGE_DESC_SUCCESS, expectedModel);
     }
-
 
 }
