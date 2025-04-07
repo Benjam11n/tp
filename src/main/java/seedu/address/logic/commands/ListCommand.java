@@ -54,13 +54,10 @@ public class ListCommand extends Command {
      * @return birthday comparator
      */
     public static Comparator<Person> getBirthdayComparator(LocalDate today, boolean descending) {
-        Comparator<Person> comparator = Comparator.comparing(
-                person -> person.getBirthday()
+        Comparator<Person> comparator = Comparator.comparing((Person person) ->
+                person.getBirthday()
                         .map(b -> {
                             LocalDate birthDate = b.getLocalDate();
-                            if (birthDate == null) {
-                                return Long.MAX_VALUE;
-                            }
 
                             MonthDay birthdayMonthDay = MonthDay.from(birthDate);
                             MonthDay currentMonthDay = MonthDay.from(today);
@@ -71,11 +68,15 @@ public class ListCommand extends Command {
 
                             return ChronoUnit.DAYS.between(today, nextBirthday);
                         })
-                        .orElse(Long.MAX_VALUE),
-                Comparator.naturalOrder()
+                        .orElse(descending ? Long.MIN_VALUE : Long.MAX_VALUE)
         );
-
-        return descending ? comparator.reversed() : comparator;
+        Comparator<Person> nameComparator = Comparator.comparing(
+                p -> p.getName().fullName,
+                String.CASE_INSENSITIVE_ORDER
+        );
+        Comparator<Person> combined = (descending ? comparator.reversed() : comparator)
+                .thenComparing(nameComparator);
+        return combined;
     }
 
     @Override

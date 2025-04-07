@@ -93,6 +93,9 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/
 
 See the [Person Fields Summary](#person-fields-summary) for complete details on all fields.
 
+</box>
+
+
 #### Name Requirements
 ✔ **Max 150 characters**<br>
 ✔ **Must start with a letter**<br>
@@ -182,11 +185,11 @@ Shows a list of all persons in the family book.
 
 **Format:**
 - `list` - Sorted by insertion order
-- `list s/asc` — Sorted by closest upcoming birthday<br>
+- `list s/asc` — Sorted by upcoming birthdays. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
     <br>
   <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
-- `list s/desc` — Sorted by farthest upcoming birthday <br>
+- `list s/desc` — Sorted by farthest upcoming birthday. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
   <br>
   <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>

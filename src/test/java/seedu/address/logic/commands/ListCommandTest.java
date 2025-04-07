@@ -137,5 +137,4 @@ public class ListCommandTest {
                 model, ListCommand.MESSAGE_DESC_SUCCESS, expectedModel);
     }
 
-
 }
