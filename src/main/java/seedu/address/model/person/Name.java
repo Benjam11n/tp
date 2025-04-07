@@ -21,7 +21,7 @@ public class Name {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX =
-            "^[\\p{L}][\\p{L}0-9 ]*(?:[@.,!'/\\\\-][\\p{L}0-9 ]+)*$";
+            "^[\\p{L}][\\p{L}0-9 ]*(?:[@.,!'/-][\\p{L}0-9 ]+)*$";
 
     public final String fullName;
 
