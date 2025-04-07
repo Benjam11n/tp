@@ -373,18 +373,18 @@ record-keeping while adding a fun and practical element to family interactions.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                                                              | So that I can…​                                            |
-|----------|---------|-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| `* * *`  | user    | add a family member to my address book                                                                    | keep track of relatives                                    |
-| `* * *`  | user    | delete a family member                                                                                    | remove outdated or incorrect entries                       |
-| `* * *`  | user    | search for a family member by name                                                                        | quickly find their details                                 |
-| `* * *`  | user    | add a profile picture for each family member                                                              | visually recognize them                                    |
-| `* * *`  | user    | store a family member’s contact details (phone, email, address)                                           | reach out to them easily                                   |
-| `* * *`  | user    | record a family member’s relationship to me in a friendly way (e.g., “Mom’s Brother” instead of just “Uncle”) | recall how we are connected                                |
-| `* * *`  | user    | add nicknames to a family member’s profile                                                                | remember what they are called in my family                 |
-| `* * *`  | user    | add notes about a family member (fun facts, shared memories and inside jokes)                             | have a reference for conversation starters                 |
-| `* *  `  | user    | sort my family members by birthday                                                                        | remember whose birthday is coming soon to buy them gifts   |
-| `* *  `  | user    | undo and redo changes in my address book                                                                  | make mistakes comfortably when using my address book       |
+| Priority | As a …​ | I want to …​                                                                                                   | So that I can…​                                          |
+|----------|---------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| `* * *`  | user    | add a family member to my address book                                                                         | keep track of relatives                                  |
+| `* * *`  | user    | delete a family member                                                                                         | remove outdated or incorrect entries                     |
+| `* * *`  | user    | search for a family member by name                                                                             | quickly find their details                               |
+| `* * *`  | user    | add a profile picture for each family member                                                                   | visually recognize them                                  |
+| `* * *`  | user    | store a family member’s contact details (phone, email, address)                                                | reach out to them easily                                 |
+| `* * *`  | user    | record a family member’s relationship to me in a friendly way (e.g., “Mom’s Brother” instead of just “Uncle”)  | recall how we are connected                              |
+| `* * *`  | user    | add nicknames to a family member’s profile                                                                     | remember what they are called in my family               |
+| `* * *`  | user    | add notes about a family member (fun facts, shared memories and inside jokes)                                  | have a reference for conversation starters               |
+| `* *  `  | user    | sort my family members by birthday                                                                             | remember whose birthday is coming soon to buy them gifts |
+| `* *  `  | user    | undo and redo changes in my address book                                                                       | make mistakes comfortably when using my address book     |
 
 
 

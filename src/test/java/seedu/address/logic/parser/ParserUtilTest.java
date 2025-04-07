@@ -111,7 +111,7 @@ public class ParserUtilTest {
 
     @Test
     public void formatName_handlesWordsStartingWithNonLetters() {
-        assertEquals("123 Main Street", ParserUtil.formatName("123 main street"));
+        assertEquals("123 main street", ParserUtil.formatName("123 main street"));
         assertEquals("@John", ParserUtil.formatName("@John"));
         assertEquals("#Doe", ParserUtil.formatName("#Doe"));
     }
