@@ -85,6 +85,16 @@
 ---
 ## 📥 Managing Contacts
 
+<box type="info" seamless>
+
+**Detecting Duplicate Persons:**<br>
+
+* The app detects duplicate persons based on a case-insensitive comparison of their names only.
+* E.g. `John Doe`, `john doe`, and `JOHN DOE` are all considered the same person.
+* If an `add` or `edit` command results in a duplicate person, the command would be rejected with an error message.
+
+</box>
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -93,16 +103,15 @@ Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/
 
 #### Name Requirements
 ✔ **Must start with a letter** (A-Z, a-z)  
-✔ **Cannot end with a special character** (@, ., -, etc.)  
-✔ **No consecutive special characters excluding escaping slashes** (e.g., `--`, `@@`, `..`)
+✔ **Cannot end with a special character** (`@`, `.`, `,`, `!`, `'`, `/`, `-`, and `?`) <br>
+✔ **No consecutive special characters** (e.g. `--`, `@@`, `..`)
 
 
 <box type="tip" seamless>
-<strong>Escaping slashes:</strong> In the event you wish to have a name with a reserved field (e.g. n/). You can do so by using the <code>\</code> character<br>
-E.g. To include <code>"n/"</code> in a name, type it as <code>"\n/"</code>
-Note: Redundant or excessive usage of this character may seem like it violates the "No consecutive special character" rule of the name requirement.<br>
-However, the user must recognise that an input such as this: <code>xo\\p/9999\\-\\awow</code> is reduced to <code>xo\p/9999\-\awow</code> and further reduced to <code>xop/9999-awow</code> which satisfies the name constraints.
+<strong>Escaping slashes:</strong> We recommend all <code>/</code>  be escaped with <code>\</code> to be recognized correctly. Unescaped <code>/</code> may lead to undefined behaviours. E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>.
 </box>
+ Note: All <code>\</code> will be removed in names. E.g. <code>test\\\/name</code> will be converted to <code>test/name</code>
+
 <br>
 <br>
 <box type="tip" seamless>
@@ -113,12 +122,14 @@ However, the user must recognise that an input such as this: <code>xo\\p/9999\\-
 ✔ **Only `.png` supported for now**  
 ✔ **Use `img/<IMAGE_PATH>` to specify the image path**  
 ✔ **Image path must be absolute**  
-<small>*(An absolute path is the full location from the system root, e.g., `/Users/alex/images/photo.png`)*</small>
+<small>*(An absolute path is the full location from the system root, e.g. `/Users/alex/images/photo.png`)*</small>
 
 
 <box type="tip" seamless>
 Mac Tip: Use <code>pwd</code> in terminal to get full working directory
 </box>
+
+<br>
 
 Examples:
 ```
@@ -135,7 +146,7 @@ add n/Nickie p/88888888 r/son
 add n/Betsy Crowe p/99999999 r/Other 
     e/betsycrowe@example.com 
     a/Newgate Prison 
-    b/03-30-2001 
+    b/30-03-2001 
     no/Son's girlfriend
 ```
 
@@ -160,8 +171,8 @@ Edits an existing person in the address book.
 *  `edit 2 n/Betsy Crower t/`   
     Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-<box type="tip" seamless> To <strong>remove</strong> any optional field (e.g., nickname or birthday), simply leave the value blank. 
-</br>E.g., to remove a nickname: <code>edit 2 nn/</code> </box>
+<box type="tip" seamless> To <strong>remove</strong> any optional field (e.g. nickname or birthday), simply leave the value blank. 
+</br>E.g. to remove a nickname: <code>edit 2 nn/</code> </box>
 
 ### Deleting a person: `delete`
 
@@ -171,8 +182,8 @@ Deletes the specified person(s) from the address book.
 
 * Deletes the person(s) at the specified `INDEX` values.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** (e.g., 1, 2, 3, …).
-* Supports deleting multiple people at once (e.g., `delete 1 2 4`).
+* The index **must be a positive integer** (e.g. 1, 2, 3, …).
+* Supports deleting multiple people at once (e.g. `delete 1 2 4`).
 
 **Examples:**
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -193,6 +204,10 @@ Shows a list of all persons in the family book.
   <br>
   <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
+  
+<box type="warning" seamless>
+When you edit a person's birthday while viewing a birthday-sorted list (`list s/asc` or `list s/desc`), the order of people in the list will update automatically based on the new birthday information. This might cause the edited person to appear in a different position in the list. Use `list` to restore the original order (before sorting).
+</box>
 
 ---
 
@@ -205,9 +220,9 @@ Finds persons whose names match any of the given keywords. If no exact or partia
 
 * Performs an exact and partial match search first.
   If no results are found, a fuzzy search will suggest similar names instead.   
-  E.g., `find Jon` can return names like `John`, `Jonathan`, or `Joni`.
+  E.g. `find Jon` can return names like `John`, `Jonathan`, or `Joni`.
 * The search is case-insensitive.  
-  E.g., `find hans` will match `Hans`
+  E.g. `find hans` will match `Hans`
 * The order of the keywords does not matter.  
   E.g. `find Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -218,8 +233,12 @@ Finds persons whose names match any of the given keywords. If no exact or partia
 **Examples:**
 * `find Jon` returns `John Doe`, `Jonathan Sim`, `Joni Tan`
 * `find alex david` returns `Alex Yeoh`, `David Li`  
-* `find Mich` returns `Mick`, `Mach` if there is no name 
+* `find Mich` returns `Mick`, `Mach` if there is no name
 </br>
+
+<box type="warning" seamless>
+When you edit a person's name while in a filtered view (after using `find`), the person card may disappear from the current view if their new name no longer matches the search criteria. Use `list` to see all contacts again.
+</box>
  
 
 ---
@@ -248,6 +267,13 @@ If there's nothing to redo, the command will do nothing.
 
 Clears all entries from the address book.
 It's important to note that the `clear` command cannot be undone using `undo` - so be wary when using clear!
+<box type="warning" seamless>
+
+**Warning:**
+The `clear` command will erase all entries from the address book and **cannot be undone** using the `undo` command.
+Please use this command with caution to avoid irreversible data loss.
+
+</box>
 
 **Format:** `clear`
 
@@ -266,6 +292,18 @@ Exits the program.
 
 **Format:** `exit`
 
+### Navigating the Command History
+The application keeps track of the past 100 commands you've previously entered, allowing you to easily recall and reuse them.
+
+**Usage:**
+* Press the `Up` arrow key to access previous commands in reverse chronological order.
+* Press the `Down` arrow key to navigate forward through the command history.
+* Command history includes both valid and invalid commands.
+* When you reach the most recent command, pressing `Down` will clear the command box.
+* When you reach the oldest command, there would be no change after pressing `Up`.
+
+This feature is particularly useful when you need to repeat commands with minor modifications or when you want to correct a previously entered command.
+
 ### Saving the data
 
 AddressBook and command history data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -279,7 +317,7 @@ AddressBook data is saved automatically as a JSON file `[JAR file location]/data
 **Caution:**
 If your changes to the data files make their format invalid, AddressBook will discard all data and start with an empty data file at the next run. This applies to both files independently - an invalid addressbook.json will cause contact data to be cleared, while an invalid commandhistory.json will cause command history to be cleared. Hence, it is recommended to take a backup of the files before editing them.<br>
 
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data files only if you are confident that you can update them correctly.
+Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data files only if you are confident that you can update them correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -293,24 +331,29 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: Why does the app allow strings and special characters for the phone field?
+**A**: So that we can allow flexible use of the phone field. Users can use strings to segment numbers and special characters to add country codes. e.g. `(home): 6789 4567 (mobile): 9898 7676 (Indian contact): +91-1234567890`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-
+3. **Using Non-Latin characters** is possible. Adding names with non-Latin characters is allowed, but we recommend separating 
+Latin and non-Latin characters, i.e. not using the two in one word. Our fuzzy search does not perform effectively on non-Latin characters.
+4. **When trying to input duplicate names**, we block adding duplicate names. We recommend users to prefix or suffix names with identifiers to distinguish relatives with same names. E.g. `Nicholas (Old)` `Nicholas (Young)`
 --------------------------------------------------------------------------------------------------------------------
 
 # Command summary
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​` <br> e.g., `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 no/My favorite son`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Delete** | `delete INDEX…​`<br> e.g., `delete 3`, `delete 1 2 4`
+**Add**    | `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​` <br> e.g. `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/01-12-2001 no/My favorite son`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
+**Delete** | `delete INDEX…​`<br> e.g. `delete 3`, `delete 1 2 4`
 **List**   | `list`<br>`list s/asc`<br>`list s/desc`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Undo**   | `undo`<br>Reverts the most recent `add`, `edit`, or `delete` command
 **Redo**   | `redo`<br>Re-applies the most recently undone command (only if `undo` was used before)
 **Clear**  | `clear`

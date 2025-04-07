@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_BIRTHDAY, PREFIX_RELATIONSHIP, PREFIX_NICKNAME, PREFIX_NOTES, PREFIX_IMG, PREFIX_TAG);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-            throw new ParseException(String.format(MISSING_COMPULSORY_PARAM
+            throw new ParseException(String.format(MISSING_COMPULSORY_PARAM + "\n"
                     + MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         if (!argMultimap.getPreamble().isEmpty()) {
@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_RELATIONSHIP, PREFIX_BIRTHDAY, PREFIX_NICKNAME, PREFIX_NOTES);
+                PREFIX_RELATIONSHIP, PREFIX_BIRTHDAY, PREFIX_NICKNAME, PREFIX_NOTES, PREFIX_IMG);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         // Optional fields

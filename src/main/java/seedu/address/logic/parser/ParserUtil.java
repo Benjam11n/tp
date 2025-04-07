@@ -55,7 +55,7 @@ public class ParserUtil {
         requireNonNull(name);
         String input = name.trim();
         String formattedName = formatName(input);
-        formattedName = escapeRemover(formattedName);
+        formattedName = slashEscapeRemover(formattedName);
         try {
             Name.isValidName(formattedName);
         } catch (IllegalArgumentException e) {
@@ -65,29 +65,17 @@ public class ParserUtil {
     }
 
     /**
-     * Formats a name to have the first letter of each word in uppercase and the rest in lowercase.
-     * Removes any extra spaces between words.
+     * Formats a name to remove extra spaces between each word.
+     * (e.g. of behaviour: "martha  von   trapp" formatted to "martha von trapp"
      *
      * @param name The name to be formatted.
      * @return The formatted name.
      */
     public static String formatName(String name) {
-        name = name.trim().replaceAll("\\s+", " ");
-        String[] words = name.split(" ");
-        StringBuilder formattedName = new StringBuilder();
-        for (String word : words) {
-            if (!word.isEmpty() && Character.isLetter(word.charAt(0)) && !word.contains("/")) {
-                formattedName.append(Character.toUpperCase(word.charAt(0)));
-                if (word.length() > 1) {
-                    formattedName.append(word.substring(1));
-                }
-                formattedName.append(" ");
-            } else {
-                formattedName.append(word).append(" ");
-            }
-        }
-        return formattedName.toString().trim();
+        // Trim leading and trailing spaces and replace multiple spaces with a single space
+        return name.trim().replaceAll("\\s+", " ");
     }
+
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
@@ -101,6 +89,7 @@ public class ParserUtil {
         }
         String trimmedPhone = phone.get().trim();
         try {
+            trimmedPhone = slashEscapeRemover(trimmedPhone);
             Phone.isValidPhone(trimmedPhone);
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
@@ -311,17 +300,6 @@ public class ParserUtil {
         }
 
         return Optional.of(new ImagePath(trimmed));
-    }
-
-
-    /**
-     * Removes escape characters from the input string.
-     *
-     * @param input The input string.
-     * @return The input string with escape characters removed.
-     */
-    public static String escapeRemover(String input) {
-        return input.replace("\\", "");
     }
 
     /**
