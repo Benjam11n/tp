@@ -749,7 +749,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Navigating command history
 
-    1. Prerequisites: At least two different commands (e.g., list, find Alice) have been executed.
+    1. Prerequisites: At least one command (e.g., list) have been executed.
 
     1. Test case: Press Up arrow key after entering a command<br>
     Expected: Previous command appears in command box.
