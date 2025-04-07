@@ -389,28 +389,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
+
 # WhoAreYouAgain? - Use Cases
 
 ## Use Case 1: Add Contact to Contact List
 **System**: WhoAreYouAgain?  
-**Use case**: UC01 - Add Contact  
+**Use case**: UC01 - Add Contact
 **Actor**: User
 
 ### Main Success Scenario (MSS):
 1. User enters family member's details into command input box.
-2. System displays success message and saves contact to contact list.   
+2. System adds contact to contact list.
+3. System displays a message: "New person added: <NAME>; Image: file:/.../tp/build/resources/main/images/defaultUserPicture.png" _(Note: That the message will be different based on the amount of information given to the command. Additionally, defaultUserPicture.png is the default contact image assigned to a contact if none is provided. The file path shown is user-dependent.)_
+
    **Use case ends.**
 
 ### Extensions:
-- **2a. User leaves the name field empty.**
-    - 2a1. System displays an error message that outlines use of `add` command.
-    - Use case resumes from step 1 with corrected details (name field not empty).
+- **2a. User leaves the name field empty.** (e.g. `add n/ `)
+    - 2a1. System displays a message: "Names cannot be empty, or only contain spaces or tabs."
+    - Use case resumes from step 1 with a non-empty name.
 
-- **2b. User enters an invalid flag (e.g. flag does not exist like `kz/ Hello`).**
-    - 2b1. System displays an error message that outlines use of `add` command.
-    - Use case resumes from step 1 with corrected syntax (using a valid flag like `n/Hello`).
+- **2b. User enters an invalid name.** (e.g. `add n/Bob~`)
+    - 2b1. System displays a message: "Names cannot start or end with a special character." _(note: this message may differ depending on the condition of invalidity (e.g. no special characters at the end of name, no names longer than 150 characters, etc.))_
+    - Use case resumes from step 1 with a valid name (e.g. `add n/Bob`).
 
-- **2c. User enters a duplicate name (e.g. adding "tom" when "tom" already exists in the contact list).**
+- **2c. User enters a duplicate name.** (e.g. `add n/tom` when "tom" already exists in the contact list)
     - 2c1. System displays an error message that outlines that a duplicate contact already exists.
     - User can choose to retry adding a new, non-duplicate contact from step 1 OR the use case ends here if the user does
       not want to add the duplicate contact.
@@ -424,22 +427,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Main Success Scenario (MSS):
 1. User enters `list s/asc` in the command input box.
 2. System displays the contact list in order of most to least recent birthdays. _(Note: that contacts with no birthdays will be found at the bottom of the sorted contact list and will be displayed in natural order.)_
+3. System also displays a message: "Listed all persons by upcoming birthdays (soonest first)."
+
+   **Use case ends.**
+
 
 <box type="info" seamless>
 
 **What is natural order?**
 
 - In Java, "natural order" refers to the default ordering of objects as defined by the Comparable interface. It is the inherent or logical way elements of a specific type are expected to be ordered. For example:
-
 - Numbers: Natural order is ascending numerical order (e.g., 1, 2, 3).
-
 - Strings: Natural order is lexicographical (alphabetical) order.
-
 - Dates: Natural order is chronological order.
 
 </box>
-
-**Use case ends.**
 
 ### Extensions:
 - **2a. The user inputs an invalid list command (e.g. `list sort`).**
@@ -448,15 +450,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-## Use Case 3: Search for a Family Member
+## Use Case 3: Find a Family Member
 **System**: WhoAreYouAgain?  
 **Use case**: UC03 - Find Family Member  
 **Actor**: User
 
 ### Main Success Scenario (MSS):
-1. User enters the command to find a family member (e.g. `find Nic`).
-
-2. System searches and displays the matching family members in the contact list using prefix-matching and fuzzy search. System also displays a message:"x persons listed!" _(where x is the number of persons matching the prefix given)_
+1. User enters the command to find a family member. (e.g. `find Nic`)
+2. System searches and displays the matching family members in the contact list using prefix-matching and fuzzy search. System also displays a message: "x persons listed!" _(where x is the number of persons matching the prefix given)_.
 
    **Use case ends.**
 
@@ -466,31 +467,117 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **How does the system match family members?**
 
 - The system uses prefix-matching in order to match names via their prefixes. A simple example of this is shown below:
-    - 1. Preconditions: Three contacts already exist in the contact list with the prefix `bren` (e.g. `brenda, brenton, brendt`)
+    - 1. Pre-requisite: Three contacts already exist in the contact list with the prefix `bren` (e.g. `brenda, brenton, brendt`)
     - 2. User enters `find bren` in the command input box.
     - 3. System filters and displays `brenda, brendon and brendt` based on the prefix `bren` provided.
     - 4. User then removes filter by running `list` and then runs `find brend`.
     - 5. System filters and displays `brenda and brendt` based on the prefix `brend` provided.
 
-- Besides using prefix-matching, the system also uses fuzzy search to try to match similar names. A simple example of this is shown below:
-    - 1. Preconditions: A contact `Nic Tok` already exists in the contact list.
-    - 2. User enters `find ok`
+- Besides using prefix-matching, the system also uses fuzzy search to try to match similar names. This is the fall-back search method if prefix-matching fails. A simple example of this is shown below:
+    - 1. Pre-requisite: A contact `Nic Tok` already exists in the contact list.
+    - 2. User enters `find ok`.
+    - 3. System filters and displays `Nic Tok` based on the fuzzy search of prefix `ok`.
+    - 4. User then removes filter by running `list` and then runs `find otk`.
+    - 5. System filters and displays `Nic Tok` based on the fuzzy search of prefix `otk`.
+
+- Do note: **fuzzy search may NOT always yield correct results**. This is **NOT a bug**. This behaviour is a result of the threshold of similarity that is used by the fuzzy search function. The accuracy of the fuzzy search is, hence, highly reliant on the prefix used. _(e.g. finding Yashvan with `find van` does not work but `find hvan` works)_
 
 </box>
 
-**Use case ends.**
 
 ### Extensions:
-- **3a. No matching or similar family member is found.**
-    - 3a1. System displays a message: “No match found, found 0 similar entries”. No contacts are shown in the contact list.
-    - **Use case ends.**
+- **1a. No matching or similar family member(s) is/are found.**
+    - 1a1. System displays a message: “No match found, found 0 similar entries”. No contacts are shown in the contact list.
+    - Use case resumes from step 1 with a prefix which exists in the contact list.
 
-- **3b. No matching but similar family member(s) is/are found.**
-    - 3b1. System displays a message: “No match found, found x similar entries” _(where x is the number of similar family members)_. The similar family member contacts are shown in the contact list in order of insertion.
-    - **Use case ends.**
 
-- **3c. User inputs an incorrect command. (e.g. `find"nic"` is not a known command)**
-    - 3c1. System displays a message: `Unknown command, try typing 'help' for assistance!`.
+- **1b. No matching but similar family member(s) is/are found.**
+    - 1b1. System displays a message: “No match found, found x similar entries” _(where x is the number of similar family members)_. The similar family member contacts are shown in the contact list in order of insertion.
+    - Use case resumes from step 1 with a prefix which exists in the contact list.
+
+- **1c. User inputs an incorrect command. (e.g. `find"nic"`)**
+    - 1c1. System displays a message: `Unknown command, try typing 'help' for assistance!`.
+    - Use case resumes from step 1 with valid `find` syntax.
+
+---
+
+## Use Case 4: Getting Help
+**System**: WhoAreYouAgain?  
+**Use case**: UC04 - Getting Help natively
+**Actor**: User
+
+### Main Success Scenario (MSS):
+1. User enters the command to open the help window (e.g. `help`). _Alternatively, the user can also press F1 to open the help window._
+2. System opens the help window and displays a message: "Opened help window." in the result display box.
+
+   **Use case ends.**
+
+### Extensions:
+- **1a. User inputs an incorrect command. (e.g. `helpp`)**
+    - 1a1. System displays a message: `Unknown command, try typing 'help' for assistance!`.
+    - Use case resumes from step 1 with the correct command syntax for `help`.
+
+- **2a. The help window is already open.**
+    - 2a1. System will bring the help window forward to highlight it.
+
+  **Use case ends.**
+
+---
+
+## Use Case 5: Edit the Tags of a Contact
+**System**: WhoAreYouAgain?  
+**Use case**: UC05 - Edit Tags of a Contact
+**Actor**: User
+
+### Main Success Scenario (MSS):
+1. User enters the command to edit the tags of the selected contact index in the command input box. (e.g. `edit 1 t/playsMinecraft t/nationalAthlete`)
+2. System updates the tags of contact in index of the contact list entered _(contact list is 1-indexed)_. (based on the example above, contact `1` now has tags: playsMinecraft, nationalAthlete)
+3. System displays a message: "Edited Person: . . . Tags: NEW TAG(s)" _(where NEW TAG(s) are the tag(s) entered by the user)_. (based on the example above, the message is: "Edited Person: . . . Tags: playsMinecraft, nationalAthlete")
+
+   **Use case ends.**
+
+### Extensions:
+- **1a. Contact index input by user is invalid.** (e.g. user enters `edit 11 t/Hello` when there are only 2 contacts in the contact list)
+    - 1a1. System displays a message: "The person index provided is invalid".
+    - Use case resumes from step 1 with the correct contact index to be edited.
+
+- **1b. A duplicate tag is entered by the user** (e.g. user enters `edit 2 t/Hello t/hEllo`)
+    - 1b1. System displays a message: "Duplicate tag found (case-insensitive): <dupe-tag>" _(where <dupe-tag> is the duplicate tag found)_"
+    - Use case resumes from step 1 with non-duplicate tags entered in the `edit` command.
+
+- **1c. The user enters just an empty tag to clear tags.** (e.g. `edit 1 t/`)
+    - 1c1. System updates the tags of contact in the corresponding index as empty. (based on the example given above, contact 1 now has no tags)
+    - 1c2. System displays a message similar to that of step 3 but the "Tags" portion is not present.
+
+  **Use case ends.**
+
+---
+
+## Use Case 6: Deleting a Contact
+**System**: WhoAreYouAgain?  
+**Use case**: UC05 - Deleting a Contact
+**Actor**: User
+
+### Main Success Scenario (MSS):
+1. User enters command to delete a contact at a specific index of the contact list. (e.g. `delete 1` will delete the first contact)
+2. System will display a message: "Confirm Deleting Person: NAME ? (y/n)", where NAME is the name of the contact to be deleted. (following our example above, this will display the name of the 1st contact in our contact list)
+3. User confirms this deletion by entering `y` in the command input window.
+4. System deletes contact from contact list and refreshes the contact list to display the most current contact list.
+5. System displays a message: "Deleted Person: NAME", where NAME is the name of the contact that was deleted.
+
+   **Use case ends.**
+
+### Extensions:
+- **1a. Contact index input by user is invalid.** (e.g. `delete 11` when there's only 2 contacts in the contact list)
+    - 1a1. System displays a message: "The person index provided is invalid".
+
+        - Alternatively, if `delete x`, where x is an integer ≤ 0 is entered, the system displays: "Invalid command format! . . . Parameters: INDEX/INDICES (must be a positive integer)" _(message shortened for brevity)_.
+    - 1a2. Use case resumes from step 1 where user enters a valid contact index.
+
+- **3a. User aborts the deletion by entering `n` in the command input window.**
+    -  3a1. System displays a message: "Aborted deletion!".
+
+  **Use case ends.**
 
 ---
 
