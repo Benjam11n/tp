@@ -34,6 +34,19 @@
               <Text text="If you're new, let's help you get set up!" styleClass="sub-header"/>
             </VBox>
 
+            <VBox style="-fx-background-color: #2e3c4d; -fx-background-radius: 8; -fx-padding: 12; -fx-border-radius: 8; -fx-border-width: 1; -fx-margin-top: 15px;">
+              <HBox spacing="8" alignment="CENTER_LEFT">
+                <!-- Info Icon -->
+                <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                  <Image url="@/images/icons8-info-24.png"/>
+                </ImageView>
+                <Text text="IMPORTANT NOTE" style="-fx-fill: #e74c3c; -fx-font-weight: bold; -fx-font-size: 14;"/>
+              </HBox>
+
+              <TextFlow styleClass="paragraph" style="-fx-padding: 8 0 0 0;">
+                <Text text="This help window provides only basic guidance. For complete documentation and detailed examples, please refer to the full User Guide." style="-fx-fill: #e0e0e0; -fx-font-size: 14;"/>
+              </TextFlow>
+            </VBox>
 
             <!-- Commands -->
             <VBox styleClass="section" spacing="5">
@@ -86,7 +99,7 @@
                   </TextFlow>
                   <TextFlow style="-fx-padding: 0 0 0 15px;">
                     <Text text="e.g. " style="-fx-fill: white; -fx-font-size:14px"/>
-                    <Text text="delete…" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
+                    <Text text="delete INDEX [MORE_INDEXES]…" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
                     <Text text=" can delete one or multiple contacts." style="-fx-fill: white; -fx-font-size:14px"/>
                   </TextFlow>
 
@@ -97,10 +110,12 @@
 
                   <TextFlow>
                     <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
-                    <Text text="Extraneous parameters for simple commands (" style="-fx-fill: white; -fx-font-size:14px"/>
+                    <Text text="Extraneous parameters for certain commands (" style="-fx-fill: white; -fx-font-size:14px"/>
                     <Text text="help" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
-                    <Text text=" and " style="-fx-fill: white; -fx-font-size:14px"/>
+                    <Text text=", " style="-fx-fill: white; -fx-font-size:14px"/>
                     <Text text="exit" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
+                    <Text text=" and " style="-fx-fill: white; -fx-font-size:14px"/>
+                    <Text text="clear" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
                     <Text text=") are ignored." style="-fx-fill: white; -fx-font-size:14px"/>
                   </TextFlow>
                   <TextFlow style="-fx-padding: 0 0 0 15px;">
@@ -691,7 +706,7 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
 
                 <TextFlow styleClass="paragraph">
                   <Text text="Syntax: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                  <Text text="list [s/ORDER]" styleClass="code-block"/>
+                  <Text text="list [s/SORT_ORDER]" styleClass="code-block"/>
                 </TextFlow>
 
                 <VBox spacing="20" alignment="CENTER_LEFT">
