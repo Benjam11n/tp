@@ -59,6 +59,9 @@ public class ListCommand extends Command {
                         .map(b -> {
                             LocalDate birthDate = b.getLocalDate();
                             if (birthDate == null) {
+                                if (descending) {
+                                    return Long.MIN_VALUE;
+                                }
                                 return Long.MAX_VALUE;
                             }
 
@@ -71,10 +74,9 @@ public class ListCommand extends Command {
 
                             return ChronoUnit.DAYS.between(today, nextBirthday);
                         })
-                        .orElse(Long.MAX_VALUE),
+                        .orElse(descending ? Long.MIN_VALUE : Long.MAX_VALUE),
                 Comparator.naturalOrder()
         );
-
         return descending ? comparator.reversed() : comparator;
     }
 
