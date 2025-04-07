@@ -103,7 +103,7 @@ Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/
 
 #### Name Requirements
 ✔ **Must start with a letter** (A-Z, a-z)  
-✔ **Cannot end with a special character** (@, ., -, etc.)  
+✔ **Cannot end with a special character** (`@`, `.`, `,`, `!`, `'`, `/`, `-`, and `?`) <br>
 ✔ **No consecutive special characters** (e.g. `--`, `@@`, `..`)
 
 
