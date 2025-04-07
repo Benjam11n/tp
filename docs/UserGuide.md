@@ -91,9 +91,7 @@ Adds a person to the address book.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
 
-<box type="tip" seamless>
 See the [Person Fields Summary](#person-fields-summary) for complete details on all fields.
-</box>
 
 #### Name Requirements
 ✔ **Max 150 characters**<br>
