@@ -369,7 +369,8 @@
                     <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
-                        <Text text="• The edit command only changes the fields you specify - other fields remain unchanged." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• To remove any optional field (e.g. nickname or birthday), simply leave the value blank.
+E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
