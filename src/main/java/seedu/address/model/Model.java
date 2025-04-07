@@ -101,6 +101,5 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortFilteredPersonList(Comparator<Person> comparator);
-
     void addPersonAt(Person person, int index);
 }
