@@ -90,7 +90,7 @@
 **Detecting Duplicate Persons:**<br>
 
 * The app detects duplicate persons based on a case-insensitive comparison of their names only.
-* E.g., `John Doe`, `john doe`, and `JOHN DOE` are all considered the same person.
+* E.g. `John Doe`, `john doe`, and `JOHN DOE` are all considered the same person.
 * If an `add` or `edit` command results in a duplicate person, the command would be rejected with an error message.
 
 </box>
@@ -300,6 +300,7 @@ The application keeps track of the past 100 commands you've previously entered, 
 * Press the `Down` arrow key to navigate forward through the command history.
 * Command history includes both valid and invalid commands.
 * When you reach the most recent command, pressing `Down` will clear the command box.
+* When you reach the oldest command, there would be no change after pressing `Up`.
 
 This feature is particularly useful when you need to repeat commands with minor modifications or when you want to correct a previously entered command.
 
