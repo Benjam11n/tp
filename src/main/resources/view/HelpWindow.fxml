@@ -712,7 +712,7 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                   <TextFlow styleClass="paragraph">
                     <Text text="Example: " style="-fx-fill: white; -fx-font-weight: bold;" wrappingWidth="200"/>
                     <Text text="list s/asc" styleClass="code-block"/>
-                    <Text text=" returns a sorted view of all contacts in ascending order of birthdays." style="-fx-fill: white; -fx-font-size:14px"/>
+                    <Text text=" returns a sorted list of all contacts by their upcoming birthdays. Contacts without birthdays are listed at the end, sorted alphabetically (A–Z)." style="-fx-fill: white; -fx-font-size:14px"/>
                   </TextFlow>
 
                   <!-- Birthday Reminder Block -->
@@ -727,12 +727,12 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                         <Text text="s/" style="-fx-fill: #FFD700; -fx-font-weight: bold; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" or " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="sort" style="-fx-fill: #FFD700; -fx-font-weight: bold; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" command!" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" argument!" style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
                         <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="list" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" integrates " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" can integrate " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="sort" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" to show contacts by birthday order." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
@@ -744,7 +744,7 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                         <Text text=" (descending) order." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="• We'll highlight upcoming birthdays so you never miss a greeting!" style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• We'll push upcoming birthdays to the top of the list so you never miss a greeting! (s/asc)" style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow styleClass="paragraph">
                         <Text text="Examples: " style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size:16px" wrappingWidth="200" />
@@ -752,12 +752,12 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                       <TextFlow styleClass="paragraph">
                         <Text text="• " style="-fx-fill: white;"/>
                         <Text text="list s/asc" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" - Shows contacts sorted by upcoming birthdays (next birthday first)." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" - Shows contacts sorted by upcoming birthdays. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z)." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow styleClass="paragraph">
                         <Text text="• " style="-fx-fill: white;"/>
                         <Text text="list s/desc" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" - Shows contacts sorted by most recent birthdays." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" - Shows contacts sorted by farthest birthdays. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z)." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
