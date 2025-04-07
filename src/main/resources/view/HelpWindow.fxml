@@ -705,7 +705,7 @@
 
                 <TextFlow styleClass="paragraph">
                   <Text text="Syntax: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                  <Text text="list [s/ORDER]" styleClass="code-block"/>
+                  <Text text="list [s/SORT_ORDER]" styleClass="code-block"/>
                 </TextFlow>
 
                 <VBox spacing="20" alignment="CENTER_LEFT">
