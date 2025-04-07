@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_RELATIONSHIP, PREFIX_BIRTHDAY, PREFIX_NICKNAME, PREFIX_NOTES);
+                PREFIX_RELATIONSHIP, PREFIX_BIRTHDAY, PREFIX_NICKNAME, PREFIX_NOTES, PREFIX_IMG);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         // Optional fields
