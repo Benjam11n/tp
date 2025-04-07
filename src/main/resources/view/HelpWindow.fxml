@@ -741,7 +741,7 @@
                       <TextFlow>
                         <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="list" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" can integrates " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text=" can integrate " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="sort" style="-fx-fill: #FFD700; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" to show contacts by birthday order." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
