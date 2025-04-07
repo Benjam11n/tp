@@ -55,7 +55,7 @@ public class ParserUtil {
         requireNonNull(name);
         String input = name.trim();
         String formattedName = formatName(input);
-        formattedName = escapeRemover(formattedName);
+        formattedName = slashEscapeRemover(formattedName);
         try {
             Name.isValidName(formattedName);
         } catch (IllegalArgumentException e) {
@@ -312,17 +312,6 @@ public class ParserUtil {
         }
 
         return Optional.of(new ImagePath(trimmed));
-    }
-
-
-    /**
-     * Removes escape characters from the input string.
-     *
-     * @param input The input string.
-     * @return The input string with escape characters removed.
-     */
-    public static String escapeRemover(String input) {
-        return input.replace("\\", "");
     }
 
     /**
