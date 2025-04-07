@@ -298,7 +298,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-<puml src="diagrams/UndoSequenceDiagramProposed-Logic.puml" alt="UndoSequenceDiagram-Logic" />
+<puml src="diagrams/UndoSequenceDiagramProposed.puml" alt="UndoSequenceDiagram-Logic" />
 
 <box type="info" seamless>
 
