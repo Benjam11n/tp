@@ -408,11 +408,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **2a. User leaves the name field empty.** (e.g. `add n/ `)
     - 2a1. System displays a message: "Names cannot be empty, or only contain spaces or tabs."
     - Use case resumes from step 1 with a non-empty name.
-
+<br>
+</br>
 - **2b. User enters an invalid name.** (e.g. `add n/Bob~`)
     - 2b1. System displays a message: "Names cannot start or end with a special character." _(note: this message may differ depending on the condition of invalidity (e.g. no special characters at the end of name, no names longer than 150 characters, etc.))_
     - Use case resumes from step 1 with a valid name (e.g. `add n/Bob`).
-
+<br>
+</br>
 - **2c. User enters a duplicate name.** (e.g. `add n/tom` when "tom" already exists in the contact list)
     - 2c1. System displays an error message that outlines that a duplicate contact already exists.
     - User can choose to retry adding a new, non-duplicate contact from step 1 OR the use case ends here if the user does
@@ -489,11 +491,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **1a. No matching or similar family member(s) is/are found.**
     - 1a1. System displays a message: “No match found, found 0 similar entries”. No contacts are shown in the contact list.
     - Use case resumes from step 1 with a prefix which exists in the contact list.
-
+<br>
+</br>
 
 - **1b. No matching but similar family member(s) is/are found.**
     - 1b1. System displays a message: “No match found, found x similar entries” _(where x is the number of similar family members)_. The similar family member contacts are shown in the contact list in order of insertion.
     - Use case resumes from step 1 with a prefix which exists in the contact list.
+<br>
+</br>
 
 - **1c. User inputs an incorrect command. (e.g. `find"nic"`)**
     - 1c1. System displays a message: `Unknown command, try typing 'help' for assistance!`.
@@ -503,7 +508,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Use Case 4: Getting Help
 **System**: WhoAreYouAgain?  
-**Use case**: UC04 - Getting Help natively
+**Use case**: UC04 - Getting Help natively  
 **Actor**: User
 
 ### Main Success Scenario (MSS):
@@ -516,9 +521,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **1a. User inputs an incorrect command. (e.g. `helpp`)**
     - 1a1. System displays a message: `Unknown command, try typing 'help' for assistance!`.
     - Use case resumes from step 1 with the correct command syntax for `help`.
+<br>
+</br>
 
 - **2a. The help window is already open.**
     - 2a1. System will bring the help window forward to highlight it.
+<br>
+</br>
 
   **Use case ends.**
 
@@ -526,7 +535,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Use Case 5: Edit the Tags of a Contact
 **System**: WhoAreYouAgain?  
-**Use case**: UC05 - Edit Tags of a Contact
+**Use case**: UC05 - Edit Tags of a Contact  
 **Actor**: User
 
 ### Main Success Scenario (MSS):
@@ -540,14 +549,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **1a. Contact index input by user is invalid.** (e.g. user enters `edit 11 t/Hello` when there are only 2 contacts in the contact list)
     - 1a1. System displays a message: "The person index provided is invalid".
     - Use case resumes from step 1 with the correct contact index to be edited.
+<br>
+</br>
 
 - **1b. A duplicate tag is entered by the user** (e.g. user enters `edit 2 t/Hello t/hEllo`)
     - 1b1. System displays a message: "Duplicate tag found (case-insensitive): <dupe-tag>" _(where <dupe-tag> is the duplicate tag found)_"
     - Use case resumes from step 1 with non-duplicate tags entered in the `edit` command.
+<br>
+</br>
 
 - **1c. The user enters just an empty tag to clear tags.** (e.g. `edit 1 t/`)
     - 1c1. System updates the tags of contact in the corresponding index as empty. (based on the example given above, contact 1 now has no tags)
     - 1c2. System displays a message similar to that of step 3 but the "Tags" portion is not present.
+<br>
+</br>
 
   **Use case ends.**
 
@@ -555,7 +570,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Use Case 6: Deleting a Contact
 **System**: WhoAreYouAgain?  
-**Use case**: UC05 - Deleting a Contact
+**Use case**: UC06 - Deleting a Contact  
 **Actor**: User
 
 ### Main Success Scenario (MSS):
