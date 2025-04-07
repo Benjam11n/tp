@@ -212,19 +212,11 @@
                         <Text text=" images are allowed." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
-                        <Text text="• All " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="/" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" characters must be escaped with " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="\\" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text="n/" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text="in your fields, use: " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• If you intend to use a predefined prefix like " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="n/ " style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text="in your fields i.e name, phone, nickname and notes, use: " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="n\/a" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" to be recognized correctly." style="-fx-fill: white; -fx-font-size:14px"/>
-                      </TextFlow>
-                      <TextFlow>
-                        <Text text="  e.g. To include " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="s/o" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" in a name, type it as " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="s\/o" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                       </TextFlow>
                     </VBox>
                   </HBox>
@@ -419,16 +411,12 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                 <VBox spacing="20" alignment="CENTER_LEFT">
                   <TextFlow styleClass="paragraph">
                     <Text text="Description: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                    <Text text="Reverts the address book to its previous state." style="-fx-fill: white;"/>
+                    <Text text="Reverts the most recent supported command." style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Reverses the most recent change made to the address book." style="-fx-fill: white;"/>
-                  </TextFlow>
-                  <TextFlow styleClass="paragraph">
-                    <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Works by reverting to a previously saved state in the command history." style="-fx-fill: white;"/>
+                    <Text text="Works by undoing a previously saved command." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -451,7 +439,7 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                     <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
-                        <Text text="• Undo works linearly - it can only reverse the most recent command." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• Undo works linearly and can only chain through previous commands that support undo. Refer to User Guide for supported commands." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
                         <Text text="• The undo/redo history does not persist when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
@@ -518,19 +506,13 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
 
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Reverses the effect of the most recent " style="-fx-fill: white;"/>
-                    <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
-                    <Text text=" command." style="-fx-fill: white;"/>
-                  </TextFlow>
-                  <TextFlow styleClass="paragraph">
-                    <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Will display " style="-fx-fill: white;"/>
                     <Text text="Nothing to redo!" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" if there are no undone changes to reapply." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Maintains the same linear history as " style="-fx-fill: white;"/>
+                    <Text text="Maintains a similar (chained) linear history as " style="-fx-fill: white;"/>
                     <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text="." style="-fx-fill: white;"/>
                   </TextFlow>
@@ -544,6 +526,13 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                     <!-- Note Content -->
                     <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
+                      <TextFlow>
+                        <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="Redo" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text=" must be used at least after one undo command has been entered " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="undo" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text=" - entering any other non-supported commands will clear the redo history." style="-fx-fill: white; -fx-font-size:14px"/>
+                      </TextFlow>
                       <TextFlow>
                         <Text text="• The undo/redo history does not persist when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
