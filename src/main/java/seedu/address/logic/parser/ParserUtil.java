@@ -66,9 +66,7 @@ public class ParserUtil {
 
     /**
      * Formats a name to remove extra spaces between each word.
-     * Previous behaviour: used to capitalise each word in the name, removed
-     * for restrictiveness
-     * (e.g. "martha  von   trapp" formatted to "martha von trapp"
+     * (e.g. of behaviour: "martha  von   trapp" formatted to "martha von trapp"
      *
      * @param name The name to be formatted.
      * @return The formatted name.
