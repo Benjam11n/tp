@@ -396,8 +396,8 @@ Note: Backslashes will only be removed when they appear immediately before a for
 * **cd**: Short for "change directory," a command used in the terminal or command prompt to navigate between folders or directories on your computer.
 * **JDK (Java Development Kit)**: A software package that includes everything needed to develop Java applications. It contains the Java Runtime Environment (JRE), compiler, debugger, and other tools required for Java development.
 * **Index**: The number shown next to each contact in the displayed list, used to identify specific contacts in commands.
-* **Parameter**: Additional information provided with a command, usually preceded by a prefix like n/ or p/.
-* **Prefix**: Special symbols (like n/, p/, e/) that indicate what type of information follows them in a command.
+* **Parameter**: Additional information provided with a command, usually preceded by a prefix like `n/` or `p/`.
+* **Prefix**: Special symbols (like `n/`, `p/`, `e/`) that indicate what type of information follows them in a command.
 * **Fuzzy search**: A search technique that finds items even when the search term doesn't exactly match, accounting for typos or similar spellings.
 * **Command history**: A record of previously used commands that can be accessed using the up and down arrow keys.
 * **Domain**: The part of an email address after the @ symbol that identifies the email service provider (e.g., gmail.com, yahoo.com).
