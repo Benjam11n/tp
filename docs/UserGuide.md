@@ -89,7 +89,7 @@
 
 Adds a person to the address book.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`<br>
 
 See the [Person Fields Summary](#person-fields-summary) for complete details on all fields.
 
@@ -343,10 +343,9 @@ Latin and non-Latin characters, i.e. not using the two in one word. Our fuzzy se
 <box type="tip" seamless>
 <strong>Escaping slashes:</strong> We recommend escaping forward slashes (<code>/</code>) with a backslash (<code>\</code>) when they might be interpreted as command prefixes.
 
-For example:
-- If you want <code>"n/a"</code> in a nickname field, type it as <code>"n\\/a"</code> to avoid it being interpreted as the name prefix
+For example, if you want <code>"n/a"</code> in a nickname field, type it as <code>"n\\/a"</code> to avoid it being interpreted as the name prefix
 
-Note: Backslashes will only be removed when they appear immediately before a forward slash. For example, <code>name\/n\/slashes</code> will be converted to <code>name/n/slashes</code>.
+Note: Backslashes will only be removed when they appear immediately before a forward slash. For example, <code>name\\/n\\/slashes</code> will be converted to <code>name/n/slashes</code>.
 
 <strong>Where backslashes are allowed:</strong>
 - <strong>Not allowed in names</strong> except when used to escape forward slashes
