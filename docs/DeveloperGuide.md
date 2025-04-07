@@ -814,8 +814,21 @@ testers are expected to do more *exploratory* testing.
 Team Size: 5
 
 1. **Make `undo` message for edit commands more specific:** Currently, the message only shows the command and name of the person being edited which is too general.
-We plan to enhance the message to show the specific field and value changed to improve clarity for the user.
+   We plan to enhance the message to show the specific field and value changed to improve clarity for the user.
+
 2. **Ensure `undo` / `redo` restore order in any state:** Currently, the order is preserved when `undo` and `redo` is used in its base form with no search filters (i.e. from `list` or `find`) applied. 
-This applies to the states after list and find have been executed followed by an `UndoableCommand`. We plan to enhance `undo` and `redo` to preserve the order with or without search filters.
+   This applies to the states after list and find have been executed followed by an `UndoableCommand`. We plan to enhance `undo` and `redo` to preserve the order with or without search filters.
+
 3. **Implement `undo` / `redo` for `clear`:** Currently, `undo` / `redo` are only supported by `edit`, `add` and `delete`. 
-We plan to extend this functionality to `clear` as it will be useful for this "dangerous" command.
+   We plan to extend this functionality to `clear` as it will be useful for this "dangerous" command as it currently cannot be undone.
+
+4. **Make clearer error message when using undefined prefixes**: Currently, the error message when a user inputs an undefined prefix, i.e. a prefix the app does not associate with a field, an 'invalid command format' error is raised.
+   This is too general. We plan to enhance the message to show the specific prefix which caused the error. This is so that the user
+   can quickly identify the mistake in the command.
+
+5. **Make `find` applicable to other fields besides name**: Currently, the find feature is limited to finding by name. We plan to enhance the find feature to allow user to find persons
+   through other fields such as relationship and nickname. This would make searching for a forgotten relative much easier and more likely to be successful.
+
+6. **Allow tags to be edited without overwriting them**: Currently, there is no feature that allows the user to edit tags or add to them without erasing all current tags.
+   This makes tasks such as adding a tag to the current set of tags difficult. We plan to create a feature which allows users to
+   edit or add tags without erasing all current tags.
