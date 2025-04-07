@@ -202,8 +202,8 @@
                       </TextFlow>
                       <TextFlow>
                         <Text text="• If you intend to use a predefined prefix like " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="n/" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text="in your fields, use: " style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="n/ " style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text="in your fields i.e name, phone, nickname and notes, use: " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="n\/a" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" to be recognized correctly." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
