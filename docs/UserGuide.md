@@ -32,7 +32,7 @@
 
    * `list` : Lists all contacts.
 
-   * `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/2001-01-01 no/My favorite son` : Adds a relative named `Nickie` to the family book.
+   * `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/01-01-2001 no/My favorite son` : Adds a relative named `Nickie` to the family book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
