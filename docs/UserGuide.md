@@ -92,9 +92,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
 
 </box>
-<box type="warning" seamless>
-‼️ <strong>Warning</strong>: No list filters should be applied, when adding contacts or else it will result in unexpected behaviors. Call <code>list</code> to remove all filters 
-</box>
+
 
 #### Name Requirements
 ✔ **Must start with a letter** (A-Z, a-z)  
@@ -189,11 +187,11 @@ Shows a list of all persons in the family book.
 
 **Format:**
 - `list` - Sorted by insertion order
-- `list s/asc` — Sorted by upcoming birthdays. People without birthdays are listed afterward, ordered alphabetically (A–Z).<br>
+- `list s/asc` — Sorted by upcoming birthdays. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
     <br>
   <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
-- `list s/desc` — Sorted by farthest upcoming birthday. People without birthdays are listed afterward, ordered alphabetically (A–Z).<br>
+- `list s/desc` — Sorted by farthest upcoming birthday. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
   <br>
   <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
