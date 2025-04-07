@@ -89,16 +89,12 @@
 
 Adds a person to the address book.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`<br>
 
-<box type="tip" seamless>
 See the [Person Fields Summary](#person-fields-summary) for complete details on all fields.
-</box>
 
 </box>
-<box type="warning" seamless>
-‼️ <strong>Warning</strong>: No list filters should be applied, when adding contacts or else it will result in unexpected behaviors. Call <code>list</code> to remove all filters 
-</box>
+
 
 #### Name Requirements
 ✔ **Max 150 characters**<br>
@@ -117,7 +113,9 @@ See the [Person Fields Summary](#person-fields-summary) for complete details on 
 
 
 <box type="tip" seamless>
-Mac Tip: Use <code>pwd</code> in terminal to get full working directory
+To get the full working directory in your terminal/command prompt: <br>
+- Mac/Linux: Use <code>pwd</code> <br>
+- Windows: Use <code>cd</code>
 </box>
 
 <br>
@@ -187,11 +185,11 @@ Shows a list of all persons in the family book.
 
 **Format:**
 - `list` - Sorted by insertion order
-- `list s/asc` — Sorted by closest upcoming birthday<br>
+- `list s/asc` — Sorted by upcoming birthdays. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
     <br>
   <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
-- `list s/desc` — Sorted by farthest upcoming birthday <br>
+- `list s/desc` — Sorted by farthest upcoming birthday. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
   <br>
   <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
@@ -328,7 +326,7 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-**Q**: Why does the app allow strings and special characters for the phone field?
+**Q**: Why does the app allow strings and special characters for the phone field?<br>
 **A**: So that we can allow flexible use of the phone field. Users can use strings to segment numbers and special characters to add country codes. e.g. `(home): 6789 4567 (mobile): 9898 7676 (Indian contact): +91-1234567890`.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -350,10 +348,9 @@ Latin and non-Latin characters, i.e. not using the two in one word. Our fuzzy se
 <box type="tip" seamless>
 <strong>Escaping slashes:</strong> We recommend escaping forward slashes (<code>/</code>) with a backslash (<code>\</code>) when they might be interpreted as command prefixes.
 
-For example:
-- If you want <code>"n/a"</code> in a nickname field, type it as <code>"n\\/a"</code> to avoid it being interpreted as the name prefix
+For example, if you want <code>"n/a"</code> in a nickname field, type it as <code>"n\\/a"</code> to avoid it being interpreted as the name prefix
 
-Note: Backslashes will only be removed when they appear immediately before a forward slash. For example, <code>name\/n\/slashes</code> will be converted to <code>name/n/slashes</code>.
+Note: Backslashes will only be removed when they appear immediately before a forward slash. For example, <code>name\\/n\\/slashes</code> will be converted to <code>name/n/slashes</code>.
 
 <strong>Where backslashes are allowed:</strong>
 - <strong>Not allowed in names</strong> except when used to escape forward slashes

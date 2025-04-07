@@ -253,12 +253,7 @@ Step 5: Redoing the DeleteCommand
     - The ```DeleteCommand#redo``` method is invoked on the last ```delete``` command and deletes the person again.
     - `undo` is still available (for the initial ```add``` command) and `redo` is no longer available since delete has been redone.
 
-**Note:** At this point, the user should be able to notice that the `undo` and `redo` commands can be called in a circular manner i.e. ```undo -> redo -> undo -> ...``` 
-
-#### Planned Extensions
-1. Ensure undo / redo restore order in any state
-   1. This applies to the states after list and find have been executed followed by an `UndoableCommand`
-2. Implement undo / redo for `clear`
+**Note:** At this point, the user should be able to notice that the `undo` and `redo` commands can be called in a circular manner i.e. ```undo -> redo -> undo -> ...```
 
 ### \[Proposed\] Possible Undo/Redo Implementation
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
@@ -373,18 +368,25 @@ record-keeping while adding a fun and practical element to family interactions.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                                                                   | So that I can…​                                          |
-|----------|---------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| `* * *`  | user    | add a family member to my address book                                                                         | keep track of relatives                                  |
-| `* * *`  | user    | delete a family member                                                                                         | remove outdated or incorrect entries                     |
-| `* * *`  | user    | search for a family member by name                                                                             | quickly find their details                               |
-| `* * *`  | user    | add a profile picture for each family member                                                                   | visually recognize them                                  |
-| `* * *`  | user    | store a family member’s contact details (phone, email, address)                                                | reach out to them easily                                 |
-| `* * *`  | user    | record a family member’s relationship to me in a friendly way (e.g., “Mom’s Brother” instead of just “Uncle”)  | recall how we are connected                              |
-| `* * *`  | user    | add nicknames to a family member’s profile                                                                     | remember what they are called in my family               |
-| `* * *`  | user    | add notes about a family member (fun facts, shared memories and inside jokes)                                  | have a reference for conversation starters               |
-| `* *  `  | user    | sort my family members by birthday                                                                             | remember whose birthday is coming soon to buy them gifts |
-| `* *  `  | user    | undo and redo changes in my address book                                                                       | make mistakes comfortably when using my address book     |
+| Priority | As a …​ | I want to …​                                                                                                  | So that I can…​                                             |
+|----------|---------|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| `* * *`  | user    | add a family member to my address book                                                                        | keep track of relatives                                     |
+| `* * *`  | user    | delete a family member                                                                                        | remove outdated or incorrect entries                        |
+| `* * *`  | user    | search for a family member by name                                                                            | quickly find their details                                  |
+| `* * *`  | user    | add a profile picture for each family member                                                                  | visually recognize them                                     |
+| `* * *`  | user    | store a family member’s contact details (phone, email, address)                                               | reach out to them easily                                    |
+| `* * *`  | user    | record a family member’s relationship to me in a friendly way (e.g., “Mom’s Brother” instead of just “Uncle”) | recall how we are connected                                 |
+| `* * *`  | user    | add nicknames to a family member’s profile                                                                    | remember what they are called in my family                  |
+| `* * *`  | user    | add notes about a family member (fun facts, shared memories and inside jokes)                                 | have a reference for conversation starters                  |
+| `* *  `  | user    | add tags to a family member (e.g. Mom's side)                                                                 | quickly classify a family member                            |
+| `* *  `  | user    | sort my family members by birthday                                                                            | remember whose birthday is coming soon to buy them gifts    |
+| `* *  `  | user    | undo and redo changes in my address book                                                                      | make mistakes comfortably when using my address book        |
+| `* *  `  | user    | easily seek help if I am lost                                                                                 | diagnose any wrong commands/syntax used                     |
+| `* *  `  | user    | view past commands that I have entered                                                                        | can quickly re-run or modify commands without retyping them |
+| `*    `  | user    | use a dark mode theme                                                                                         | use the app comfortably at any time of the day              |
+
+
+
 
 
 
@@ -606,12 +608,12 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `undo`<br>
        Expected: Last change is reverted. Successful undo message shown.
 
-2. Redo the last undone command
+1. Redo the last undone command
 
    1. Test case: `redo` <br>
       Expected: The previously undone change is re-applied. Successful redo message shown.
 
-3. Attempting undo/redo when nothing to undo/redo or after undoable command
+1. Attempting `undo/redo` when nothing to undo/redo after an `UndoableCommand`
 
     1. Test case: undo or redo repeatedly after no more history <br>
     Expected: Error message "Nothing to undo!" or "Nothing to redo!" displayed.
@@ -684,5 +686,8 @@ testers are expected to do more *exploratory* testing.
 
 Team Size: 5
 
-1. Currently, the undo message for edit commands does not specify which field was reverted. 
+1. Currently, the `undo` message for edit commands does not specify which field was reverted. 
 We plan to enhance the message to show the specific field and value changed to improve clarity for the user.
+2. Ensure `undo` / `redo` restore order in any state
+    1. This applies to the states after list and find have been executed followed by an `UndoableCommand`
+3. Implement undo / redo for `clear`
