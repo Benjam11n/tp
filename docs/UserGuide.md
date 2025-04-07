@@ -91,6 +91,11 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
 
+</box>
+<box type="warning" seamless>
+‼️ <strong>Warning</strong>: No list filters should be applied, when adding contacts or else it will result in unexpected behaviors. Call <code>list</code> to remove all filters 
+</box>
+
 #### Name Requirements
 ✔ **Must start with a letter** (A-Z, a-z)  
 ✔ **Cannot end with a special character** (@, ., -, etc.)  
