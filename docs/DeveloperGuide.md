@@ -253,12 +253,7 @@ Step 5: Redoing the DeleteCommand
     - The ```DeleteCommand#redo``` method is invoked on the last ```delete``` command and deletes the person again.
     - `undo` is still available (for the initial ```add``` command) and `redo` is no longer available since delete has been redone.
 
-**Note:** At this point, the user should be able to notice that the `undo` and `redo` commands can be called in a circular manner i.e. ```undo -> redo -> undo -> ...``` 
-
-#### Planned Extensions
-1. Ensure undo / redo restore order in any state
-   1. This applies to the states after list and find have been executed followed by an `UndoableCommand`
-2. Implement undo / redo for `clear`
+**Note:** At this point, the user should be able to notice that the `undo` and `redo` commands can be called in a circular manner i.e. ```undo -> redo -> undo -> ...```
 
 ### \[Proposed\] Possible Undo/Redo Implementation
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
@@ -613,12 +608,12 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `undo`<br>
        Expected: Last change is reverted. Successful undo message shown.
 
-2. Redo the last undone command
+1. Redo the last undone command
 
    1. Test case: `redo` <br>
       Expected: The previously undone change is re-applied. Successful redo message shown.
 
-3. Attempting undo/redo when nothing to undo/redo or after undoable command
+1. Attempting `undo/redo` when nothing to undo/redo after an `UndoableCommand`
 
     1. Test case: undo or redo repeatedly after no more history <br>
     Expected: Error message "Nothing to undo!" or "Nothing to redo!" displayed.
@@ -691,5 +686,8 @@ testers are expected to do more *exploratory* testing.
 
 Team Size: 5
 
-1. Currently, the undo message for edit commands does not specify which field was reverted. 
+1. Currently, the `undo` message for edit commands does not specify which field was reverted. 
 We plan to enhance the message to show the specific field and value changed to improve clarity for the user.
+2. Ensure `undo` / `redo` restore order in any state
+    1. This applies to the states after list and find have been executed followed by an `UndoableCommand`
+3. Implement undo / redo for `clear`

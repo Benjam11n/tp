@@ -110,7 +110,9 @@ See the [Person Fields Summary](#person-fields-summary) for complete details on 
 
 
 <box type="tip" seamless>
-Mac Tip: Use <code>pwd</code> in terminal to get full working directory
+To get the full working directory in your terminal/command prompt: <br>
+- Mac/Linux: Use <code>pwd</code> <br>
+- Windows: Use <code>cd</code>
 </box>
 
 <br>
@@ -321,7 +323,7 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-**Q**: Why does the app allow strings and special characters for the phone field?
+**Q**: Why does the app allow strings and special characters for the phone field?<br>
 **A**: So that we can allow flexible use of the phone field. Users can use strings to segment numbers and special characters to add country codes. e.g. `(home): 6789 4567 (mobile): 9898 7676 (Indian contact): +91-1234567890`.
 
 --------------------------------------------------------------------------------------------------------------------
