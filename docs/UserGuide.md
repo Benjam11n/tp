@@ -108,7 +108,7 @@ See the [Person Fields Summary](#person-fields-summary) for complete details on 
 #### Image Support:
 ✔ **Only `.png` supported for now**  
 ✔ **Use `img/<IMAGE_PATH>` to specify the image path**  
-✔ **Image path must be absolute**  
+✔ **Image path is highly recommended to be absolute**  
 <small>*(An absolute path is the full location from the system root, e.g. `/Users/alex/images/photo.png`)*</small>
 
 
@@ -120,16 +120,15 @@ To get the full working directory in your terminal/command prompt: <br>
 
 <br>
 
-Examples:
+Examples: <small>*(fields separated for clarity)*</small>
 ```
 add n/Nickie p/88888888 r/son 
     e/nickie@gmail.com 
     a/21 Lower Kent Ridge Rd, Singapore 119077 
     nn/nickelodeon 
     b/01-01-2001
-    no/My favorite son 
-    img//Users/nickie/sleep.png 
-    t/son
+    no/My favorite son  
+    t/sleeping princess
 ```
 ```
 add n/Betsy Crowe p/99999999 r/Other 
@@ -183,19 +182,13 @@ Deletes the specified person(s) from the address book.
 
 Shows a list of all persons in the family book.
 
-**Format:**
+**Format:** `list [s/SORT_ORDER]`
 - `list` - Sorted by insertion order
-- `list s/asc` — Sorted by upcoming birthdays. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
-    <br>
-  <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
-    <br>
-- `list s/desc` — Sorted by farthest upcoming birthday. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
-  <br>
-  <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
-    <br>
+- `list s/asc` — Sorted by **upcoming birthdays**. People without birthdays are listed **at the end of the list, ordered alphabetically (A–Z)**.
+- `list s/desc` — Sorted by **farthest upcoming birthday**. People without birthdays are **listed at the end of the list, ordered alphabetically (A–Z)**.
   
 <box type="warning" seamless>
-When you edit a person's birthday while viewing a birthday-sorted list (`list s/asc` or `list s/desc`), the order of people in the list will update automatically based on the new birthday information. This might cause the edited person to appear in a different position in the list. Use `list` to restore the original order (before sorting).
+<p>When you edit a person's birthday while viewing a birthday-sorted list (<code>list s/asc</code> or <code>list s/desc</code>), the order of people in the list will update automatically based on the new birthday information. This might cause the edited person to appear in a different position in the list. Use <code>list</code> to restore the original order (before sorting).</p>
 </box>
 
 ---
@@ -203,18 +196,18 @@ When you edit a person's birthday while viewing a birthday-sorted list (`list s/
 ## 🔍 Searching
 ### Locating persons by name: `find`
 
-Finds persons whose names match any of the given keywords. If no exact or partial matches are found, the app will automatically attempt a fuzzy search to suggest similar names.
+Finds persons whose names match any of the given keywords. If **no exact or prefix** matches are found, the app will automatically attempt a fuzzy search to suggest similar names.
 
 **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
-* Performs an exact and partial match search first.
+* Performs an exact and prefix match search first.
   If no results are found, a fuzzy search will suggest similar names instead.   
   E.g. `find Jon` can return names like `John`, `Jonathan`, or `Joni`.
 * The search is case-insensitive.  
   E.g. `find hans` will match `Hans`
 * The order of the keywords does not matter.  
   E.g. `find Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* **Only the name is searched.**
 * Prefix matching. `find Ber` will match `Bertha`, `Bernice`, `Bern` etc.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).  
   E.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -226,7 +219,7 @@ Finds persons whose names match any of the given keywords. If no exact or partia
 </br>
 
 <box type="warning" seamless>
-When you edit a person's name while in a filtered view (after using `find`), the person card may disappear from the current view if their new name no longer matches the search criteria. Use `list` to see all contacts again.
+<p>When you edit a person's name while in a filtered view (after using <code>find</code>), the person card may disappear from the current view if their new name no longer matches the search criteria. Use <code>list</code> to see all contacts again.</p>
 </box>
  
 
@@ -315,9 +308,6 @@ If your changes to the data files make their format invalid, AddressBook will di
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data files only if you are confident that you can update them correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -376,10 +366,10 @@ Note: Backslashes will only be removed when they appear immediately before a for
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                             |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​` <br> e.g. `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/01-12-2001 no/My favorite son` |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`                                                                                                            |
+| **Add**    | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​` <br> e.g. `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/01-12-2001 no/My favorite son` |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`                                                                                           |
 | **Delete** | `delete INDEX…​`<br> e.g. `delete 3`, `delete 1 2 4`                                                                                                                                                                                                                                         |
-| **List**   | `list`<br>`list s/asc`<br>`list s/desc`                                                                                                                                                                                                                                                      |
+| **List**   | `list [s/SORT_ORDER]`<br>e.g.`list s/asc`                                                                                                                                                                                                                                                    |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                                                                                                                                                                                                    |
 | **Undo**   | `undo`<br>Reverts the most recent `add`, `edit`, or `delete` command                                                                                                                                                                                                                         |
 | **Redo**   | `redo`<br>Re-applies the most recently undone command (only if `undo` was used before)                                                                                                                                                                                                       |
@@ -398,6 +388,7 @@ Note: Backslashes will only be removed when they appear immediately before a for
 * **Index**: The number shown next to each contact in the displayed list, used to identify specific contacts in commands.
 * **Parameter**: Additional information provided with a command, usually preceded by a prefix like n/ or p/.
 * **Prefix**: Special symbols (like n/, p/, e/) that indicate what type of information follows them in a command.
+* **Prefix Matching**: A search technique where a query matches the beginning segment of a string, enabling partial matches for efficient data retrieval.
 * **Fuzzy search**: A search technique that finds items even when the search term doesn't exactly match, accounting for typos or similar spellings.
 * **Command history**: A record of previously used commands that can be accessed using the up and down arrow keys.
 * **Domain**: The part of an email address after the @ symbol that identifies the email service provider (e.g., gmail.com, yahoo.com).

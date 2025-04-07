@@ -847,3 +847,11 @@ Team Size: 5
 6. **Allow tags to be edited without overwriting them**: Currently, there is no feature that allows the user to edit tags or add to them without erasing all current tags.
    This makes tasks such as adding a tag to the current set of tags difficult. We plan to create a feature which allows users to
    edit or add tags without erasing all current tags.
+
+7. **Expand our image support to allow other extensions**: Currently, the application only supports `.png` images. We plan to expand the supported image formats to include additional common extensions like `.jpg`, `.jpeg`, and `.gif`.
+   This will allow users to use a wider variety of images for their family members.
+
+8. **Relax the birthday datetime format**: Currently, the birthday datetime format only accepts `DD-MM-YYYY` which is too strict. We plan to relax this restriction to allow for more flexible inputs. This will make the application more user-friendly and accommodating to different date formats.
+
+9. **Improve our duplicate Person detection algorithm**: Currently, the algorithm for detecting duplicate persons may not be robust enough. We plan to enhance this duplicate detection algorithm to more accurately identify duplicate persons. This could be possibly done in the form of adding a confirmation message when duplicate persons may be detected. 
+   This will help to ensure that the address book remains clean and free of duplicates. 
