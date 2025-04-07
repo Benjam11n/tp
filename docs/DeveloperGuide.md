@@ -796,7 +796,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Load the application and run some commands.
 
-    1. Go into the folder where the jar file is stored and delete the savedata folder.
+    1. Go into the folder where the jar file is stored and delete the data folder.
 
     1. Re-run the application.
 
@@ -804,23 +804,23 @@ testers are expected to do more *exploratory* testing.
 
 2. Transferring data
 
-    1. Go into the folder where the jar file is stored and delete the savedata folder.
+    1. Go into the folder where the jar file is stored and delete the data folder.
 
-    1. Replace it with your incoming savedata folder.
+    1. Replace it with your incoming data folder.
 
     1. Re-run the application.
 
-    1. Address book contains contacts from the new savedata folder.
+    1. Address book contains contacts from the new data folder.
 
 1. Modifying data
 
-    1. Go into the folder where the jar file is stored and modify the savedata folder.
+    1. Go into the folder where the jar file is stored and modify the data folder.
 
     1. You may add/edit/delete people here manually.
 
     1. Re-run the application.
 
-    1. Address book contains contacts from the modified savedata folder.
+    1. Address book contains contacts from the modified data folder.
 
 ---
 
