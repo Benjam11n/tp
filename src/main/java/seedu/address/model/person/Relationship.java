@@ -14,8 +14,9 @@ public class Relationship {
     public static final int MAX_LENGTH = 50;
     public static final String MESSAGE_CONSTRAINTS_LENGTH = "Relationships can be at most " + MAX_LENGTH
             + " characters long";
-    public static final String MESSAGE_CONSTRAINTS_CHARACTERS = "Relationships should have alphanumeric characters.";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s-]+";
+    public static final String MESSAGE_CONSTRAINTS_CHARACTERS = "Relationships should only contain "
+            + "alphanumeric characters, spaces, hyphens (-) or apostrophes (').";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s-']+";
     public final String relationship;
 
     /**

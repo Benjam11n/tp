@@ -89,24 +89,21 @@
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG_1] [t/TAG_2] ... [t/TAG_10]`<br>
+
+See the [Person Fields Summary](#person-fields-summary) for complete details on all fields.
+
+</box>
+
 
 #### Name Requirements
-✔ **Must start with a letter** (A-Z, a-z)  
-✔ **Cannot end with a special character** (@, ., -, etc.)  
-✔ **No consecutive special characters** (e.g. `--`, `@@`, `..`)
+✔ **Max 150 characters**<br>
+✔ **Must start with a letter**<br>
+✔ **Can contain letters, numbers, spaces and allowed special characters**<br>
+✔ **Allowed special characters:** `@`, `.`, `,`, `!`, `'`, `/`, `-`<br>
+✔ **No consecutive special characters** (e.g. `--`, `@@`, `..`)<br>
+✔ **Cannot start or end with special characters**<br>
 
-
-<box type="tip" seamless>
-<strong>Escaping slashes:</strong> We recommend all <code>/</code>  be escaped with <code>\</code> to be recognized correctly. Unescaped <code>/</code> may lead to undefined behaviours. E.g. To include <code>"s/o"</code> in a name, type it as <code>"s\/o"</code>.
-</box>
- Note: All <code>\</code> will be removed in names. E.g. <code>test\\\/name</code> will be converted to <code>test/name</code>
-
-<br>
-<br>
-<box type="tip" seamless>
-<strong>Tag multiplicity: You can insert up to 10 tags.</strong> 
-</box>
 
 #### Image Support:
 ✔ **Only `.png` supported for now**  
@@ -116,8 +113,12 @@ Format: `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/
 
 
 <box type="tip" seamless>
-Mac Tip: Use <code>pwd</code> in terminal to get full working directory
+To get the full working directory in your terminal/command prompt: <br>
+- Mac/Linux: Use <code>pwd</code> <br>
+- Windows: Use <code>cd</code>
 </box>
+
+<br>
 
 Examples:
 ```
@@ -184,14 +185,18 @@ Shows a list of all persons in the family book.
 
 **Format:**
 - `list` - Sorted by insertion order
-- `list s/asc` — Sorted by closest upcoming birthday<br>
+- `list s/asc` — Sorted by upcoming birthdays. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
     <br>
   <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
-- `list s/desc` — Sorted by farthest upcoming birthday <br>
+- `list s/desc` — Sorted by farthest upcoming birthday. People without birthdays are listed at the end of the list, ordered alphabetically (A–Z).<br>
   <br>
   <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
+  
+<box type="warning" seamless>
+When you edit a person's birthday while viewing a birthday-sorted list (`list s/asc` or `list s/desc`), the order of people in the list will update automatically based on the new birthday information. This might cause the edited person to appear in a different position in the list. Use `list` to restore the original order (before sorting).
+</box>
 
 ---
 
@@ -217,8 +222,12 @@ Finds persons whose names match any of the given keywords. If no exact or partia
 **Examples:**
 * `find Jon` returns `John Doe`, `Jonathan Sim`, `Joni Tan`
 * `find alex david` returns `Alex Yeoh`, `David Li`  
-* `find Mich` returns `Mick`, `Mach` if there is no name 
+* `find Mich` returns `Mick`, `Mach` if there is no name
 </br>
+
+<box type="warning" seamless>
+When you edit a person's name while in a filtered view (after using `find`), the person card may disappear from the current view if their new name no longer matches the search criteria. Use `list` to see all contacts again.
+</box>
  
 
 ---
@@ -272,6 +281,24 @@ Exits the program.
 
 **Format:** `exit`
 
+### Detecting Duplicate Persons
+
+* The app detects duplicate persons based on a case-insensitive comparison of their names only.
+* E.g. `John Doe`, `john doe`, and `JOHN DOE` are all considered the same person.
+* If an `add` or `edit` command results in a duplicate person, the command would be rejected with an error message.
+
+### Navigating the Command History
+The application keeps track of the past 100 commands you've previously entered, allowing you to easily recall and reuse them.
+
+**Usage:**
+* Press the `Up` arrow key to access previous commands in reverse chronological order.
+* Press the `Down` arrow key to navigate forward through the command history.
+* Command history includes both valid and invalid commands.
+* When you reach the most recent command, pressing `Down` will clear the command box.
+* When you reach the oldest command, there would be no change after pressing `Up`.
+
+This feature is particularly useful when you need to repeat commands with minor modifications or when you want to correct a previously entered command.
+
 ### Saving the data
 
 AddressBook and command history data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -299,7 +326,7 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-**Q**: Why does the app allow strings and special characters for the phone field?
+**Q**: Why does the app allow strings and special characters for the phone field?<br>
 **A**: So that we can allow flexible use of the phone field. Users can use strings to segment numbers and special characters to add country codes. e.g. `(home): 6789 4567 (mobile): 9898 7676 (Indian contact): +91-1234567890`.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -311,19 +338,69 @@ _Details coming soon ..._
 3. **Using Non-Latin characters** is possible. Adding names with non-Latin characters is allowed, but we recommend separating 
 Latin and non-Latin characters, i.e. not using the two in one word. Our fuzzy search does not perform effectively on non-Latin characters.
 4. **When trying to input duplicate names**, we block adding duplicate names. We recommend users to prefix or suffix names with identifiers to distinguish relatives with same names. E.g. `Nicholas (Old)` `Nicholas (Young)`
+
+
 --------------------------------------------------------------------------------------------------------------------
+
+
+# Person Fields Summary
+
+<box type="tip" seamless>
+<strong>Escaping slashes:</strong> We recommend escaping forward slashes (<code>/</code>) with a backslash (<code>\</code>) when they might be interpreted as command prefixes.
+
+For example, if you want <code>"n/a"</code> in a nickname field, type it as <code>"n\\/a"</code> to avoid it being interpreted as the name prefix
+
+Note: Backslashes will only be removed when they appear immediately before a forward slash. For example, <code>name\\/n\\/slashes</code> will be converted to <code>name/n/slashes</code>.
+
+<strong>Where backslashes are allowed:</strong>
+- <strong>Not allowed in names</strong> except when used to escape forward slashes
+- <strong>Allowed in phone numbers, nicknames, and notes</strong> (but will be removed if they appear before a forward slash)
+</box>
+
+| Field        | Prefix | Description                                                                              | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                      | Examples                                         |
+|--------------|--------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| Name         | `n/`   | Full name of the person and [used for duplicate detection](#detecting-duplicate-persons) | • Required<br>• Max 150 characters<br>• Must start with a letter<br>• Can contain letters, digits, spaces<br>• Allowed special characters: `@`, `.`, `,`, `!`, `'`, `/`, `-`<br>• No consecutive special characters<br>• Cannot start or end with special characters                                                                                                                                                             | `John Smith`, `Maria O'Brien`, `Lee-Wang`        |
+| Phone        | `p/`   | Contact phone number                                                                     | • Optional<br>• Max 50 characters<br>• Can contain any printable ASCII characters                                                                                                                                                                                                                                                                                                                                                | `+1 (555) 123-4567`, `91234567 (Mother)`         |
+| Email        | `e/`   | Email address                                                                            | • Optional<br>• Max 254 characters<br>• Must follow format: local-part@domain<br>• Local part must start and end with alphanumeric character<br>• Local part can contain: letters, numbers, `+`, `_`, `.`, `-`<br>• No consecutive dots or special characters<br>• Domain must have at least one period<br>• Domain labels must start/end with alphanumeric character<br>• Domain must end with top-level domain (min 2 letters) | `john.doe@example.com`, `user_name@domain.co.uk` |
+| Address      | `a/`   | Residential or mailing address                                                           | • Optional<br>• Max 200 characters<br>• Can contain any characters                                                                                                                                                                                                                                                                                                                                                               | `123 Main St, Apt 4B, New York, NY 10001`        |
+| Relationship | `r/`   | The person's relationship to you                                                         | • Optional<br>• Max 50 characters<br>• Can contain alphanumeric characters, spaces, `-`, and `'`                                                                                                                                                                                                                                                                                                                                 | `Friend`, `Co-worker`, `Mother's colleague`      |
+| Nickname     | `nn/`  | Alternate name for the person                                                            | • Optional<br>• Max 50 characters<br>• Can contain any printable ASCII characters                                                                                                                                                                                                                                                                                                                                                | `Bobby`, `The Boss`, `Sunny`                     |
+| Birthday     | `b/`   | Date of birth                                                                            | • Optional<br>• Format: DD-MM-YYYY<br>• Must be a valid date<br>• Cannot be in the future                                                                                                                                                                                                                                                                                                                                        | `15-04-1990`, `01-12-2000`                       |
+| Notes        | `no/`  | Any additional information                                                               | • Optional<br>• Max 300 characters<br>• Can contain any printable ASCII characters                                                                                                                                                                                                                                                                                                                                               | `Met at conference. Allergic to peanuts.`        |
+| Image Path   | `img/` | Path to profile picture                                                                  | • Optional<br>• Must be a valid path to a .png file                                                                                                                                                                                                                                                                                                                                                                              | `images/john_smith.png`                          |
+| Tags         | `t/`   | Categories or labels                                                                     | • Optional<br>• Max 10 tags per person<br>• Max 30 characters for each tag<br> • Tags must be alphanumeric (no spaces or special characters)<br> • Duplicate tags (case-insensitive comparison) are not allowed<br>  (e.g., `friend` and `Friend` are considered the same tag)                                                                                                                                                       | `friend`, `family`, `colleague`, `classmate`     |
+--------------------------------------------------------------------------------------------------------------------
+
 
 # Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​` <br> e.g. `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/01-12-2001 no/My favorite son`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
-**Delete** | `delete INDEX…​`<br> e.g. `delete 3`, `delete 1 2 4`
-**List**   | `list`<br>`list s/asc`<br>`list s/desc`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
-**Undo**   | `undo`<br>Reverts the most recent `add`, `edit`, or `delete` command
-**Redo**   | `redo`<br>Re-applies the most recently undone command (only if `undo` was used before)
-**Clear**  | `clear`
-**Help**   | `help` <br>Opens up the help window.
-**Exit**  | `exit`
+| Action     | Format, Examples                                                                                                                                                                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​` <br> e.g. `add n/Nickie p/88888888 r/son e/nickie@gmail.com a/21 Lower Kent Ridge Rd, Singapore 119077 nn/nickelodeon b/01-12-2001 no/My favorite son` |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`                                                                                                            |
+| **Delete** | `delete INDEX…​`<br> e.g. `delete 3`, `delete 1 2 4`                                                                                                                                                                                                                                         |
+| **List**   | `list`<br>`list s/asc`<br>`list s/desc`                                                                                                                                                                                                                                                      |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                                                                                                                                                                                                    |
+| **Undo**   | `undo`<br>Reverts the most recent `add`, `edit`, or `delete` command                                                                                                                                                                                                                         |
+| **Redo**   | `redo`<br>Re-applies the most recently undone command (only if `undo` was used before)                                                                                                                                                                                                       |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                      |
+| **Help**   | `help` <br>Opens up the help window.                                                                                                                                                                                                                                                         |
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                                       |
+--------------------------------------------------------------------------------------------------------------------
+
+
+# Glossary
+
+* **CLI (Command Line Interface)**: A text-based interface where users interact with the application by typing commands.
+* **GUI (Graphical User Interface)**: The visual elements of the application (buttons, images, windows) that users can interact with.
+* **cd**: Short for "change directory," a command used in the terminal or command prompt to navigate between folders or directories on your computer.
+* **JDK (Java Development Kit)**: A software package that includes everything needed to develop Java applications. It contains the Java Runtime Environment (JRE), compiler, debugger, and other tools required for Java development.
+* **Index**: The number shown next to each contact in the displayed list, used to identify specific contacts in commands.
+* **Parameter**: Additional information provided with a command, usually preceded by a prefix like n/ or p/.
+* **Prefix**: Special symbols (like n/, p/, e/) that indicate what type of information follows them in a command.
+* **Fuzzy search**: A search technique that finds items even when the search term doesn't exactly match, accounting for typos or similar spellings.
+* **Command history**: A record of previously used commands that can be accessed using the up and down arrow keys.
+* **Domain**: The part of an email address after the @ symbol that identifies the email service provider (e.g., gmail.com, yahoo.com).
+* **Top-level domain (TLD)**: The last part of a domain name, such as .com, .org, .edu, or country codes like .uk or .sg.
+* **ASCII**: American Standard Code for Information Interchange - a standard that assigns numeric values to text characters, allowing computers to store and exchange text information.
+* **Printable ASCII**: Characters that can be printed or displayed, ranging from space (32) to tilde (126) in the ASCII character set.

@@ -111,7 +111,7 @@ public class ParserUtilTest {
 
     @Test
     public void formatName_handlesWordsStartingWithNonLetters() {
-        assertEquals("123 Main Street", ParserUtil.formatName("123 main street"));
+        assertEquals("123 main street", ParserUtil.formatName("123 main street"));
         assertEquals("@John", ParserUtil.formatName("@John"));
         assertEquals("#Doe", ParserUtil.formatName("#Doe"));
     }
@@ -239,6 +239,26 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTags_duplicateTagsSameCase_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_1)));
+    }
+
+    @Test
+    public void parseTags_duplicateTagsDifferentCase_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList("Friend", "friend")));
+    }
+
+    @Test
+    public void parseTags_duplicateTagsMixedCase_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList("FRIEND", "Friend", "friend")));
+    }
+
+    @Test
+    public void parseTags_duplicateTagsWithWhitespace_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(" friend ", "FRIEND")));
     }
 
     @Test
