@@ -649,7 +649,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Person is added as only name is a compulsory field.
 
     1. Other incorrect add commands to try: `add`, `add 3`, `add x/` (where x is an unknown field)<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the display message. Result display remains the same.
 
 ### Editing a person
 
@@ -661,7 +661,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Person at index 1 is edited with new details.
 
     1. Test case: `edit 1`<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the display message. Result display remains the same.
 
     1. Other incorrect edit commands to try: `edit x` (where x is an unknown index), `edit 1 y/` (where y is an unknown field)<br>
        Expected: Similar to previous.
@@ -673,13 +673,13 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command and at least one person in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: Confirmation message pops up. First contact is deleted from the list when user enters `y`. Details of the deleted contact shown in the status message.
+       Expected: Confirmation message pops up. First contact is deleted from the list when user enters `y`. Details of the deleted contact shown in the display message.
    
     1. Test case: `delete 1`<br>
        Expected: Confirmation message pops up. Contact is not deleted from the list when user enters `n`. Deletion abortion message is shown.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No person is deleted. Error details shown in the display message. Result display remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -697,7 +697,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Persons listed with furthest birthdays first.
 
     1. Other incorrect delete commands to try: `list 1`, `list y/` (where y is an unknown field)<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the display message. Result display remains the same.
 
 ### Clear persons
 
