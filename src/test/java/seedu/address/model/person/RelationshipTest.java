@@ -27,6 +27,8 @@ public class RelationshipTest {
         assertTrue(Relationship.isValidRelationship("12345")); // numbers only
         assertTrue(Relationship.isValidRelationship("father 2nd")); // alphanumeric characters
         assertTrue(Relationship.isValidRelationship("Grand Father")); // with capital letters
+        assertTrue(Relationship.isValidRelationship("Grand-Father")); // with hyphen
+        assertTrue(Relationship.isValidRelationship("Mother's Friend")); // with apostrophe
         assertTrue(Relationship.isValidRelationship("Great Grand Mother")); // long relationships
     }
 

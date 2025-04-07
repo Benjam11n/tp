@@ -13,6 +13,8 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS_LENGTH =
             "Tags should be less than " + MAX_LENGTH + " characters long";
     public static final String MESSAGE_CONSTRAINTS_CHARACTERS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tag found (case-insensitive): ";
+
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;

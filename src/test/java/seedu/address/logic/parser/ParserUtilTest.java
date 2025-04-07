@@ -242,6 +242,26 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTags_duplicateTagsSameCase_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_1)));
+    }
+
+    @Test
+    public void parseTags_duplicateTagsDifferentCase_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList("Friend", "friend")));
+    }
+
+    @Test
+    public void parseTags_duplicateTagsMixedCase_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList("FRIEND", "Friend", "friend")));
+    }
+
+    @Test
+    public void parseTags_duplicateTagsWithWhitespace_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(" friend ", "FRIEND")));
+    }
+
+    @Test
     public void parseImagePath_nonExistentFile_throwsParseException() {
         Path nonExistentFile = Paths.get("some/fake/path/fake.png");
 
