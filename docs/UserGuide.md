@@ -69,7 +69,7 @@
   e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/johnDoe@gmail.com` or as `n/John Doe`.
 
 * Items with `…`​ after them can accept multiple values.<br>
-  e.g. `delete…​` can be used as `delete 1`, `delete 1 2 4`, etc.
+  e.g. `delete INDEX [MORE_INDEXES]…​` can be used as `delete 1`, `delete 1 2 4`, etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
