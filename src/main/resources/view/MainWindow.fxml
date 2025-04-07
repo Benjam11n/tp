@@ -36,7 +36,7 @@
                 -fx-font-size: 16px;
               </style>
             </Label>
-            <Label text="v1.5" styleClass="title-label">
+            <Label text="v1.6" styleClass="title-label">
               <style>
                 -fx-font-family: 'Space Mono';
                 -fx-font-size: 10px;
@@ -72,7 +72,7 @@
           </StackPane>
 
           <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                     minHeight="100" prefHeight="135" maxHeight="140">
+                     minHeight="130" prefHeight="135" maxHeight="140">
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>

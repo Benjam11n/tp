@@ -17,7 +17,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     public static final String DESCENDING_ORDER = "desc";
     public static final String COMMAND_USAGE = "list : Lists all persons in the address book\n"
             + "Parameters (optional): "
-            + PREFIX_SORT + "SORT_ORDER [asc / desc]\n"
+            + PREFIX_SORT + "[SORT_ORDER] (asc/desc)\n"
             + "Example: list " + PREFIX_SORT + "asc";
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
     /**
