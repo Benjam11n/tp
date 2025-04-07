@@ -189,11 +189,11 @@ Shows a list of all persons in the family book.
 
 **Format:**
 - `list` - Sorted by insertion order
-- `list s/asc` — Sorted by closest upcoming birthday, falling back to alphabetical order by name (A–Z)<br>
+- `list s/asc` — Sorted by upcoming birthdays. People without birthdays are listed afterward, ordered alphabetically (A–Z).<br>
     <br>
   <img src="images/UpcomingBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
-- `list s/desc` — Sorted by farthest upcoming birthday, falling back to alphabetical order by name (A–Z)<br>
+- `list s/desc` — Sorted by farthest upcoming birthday. People without birthdays are listed afterward, ordered alphabetically (A–Z).<br>
   <br>
   <img src="images/DistantBirthdays.png" alt="Ui" height="400px" width="550px"> <br>
     <br>
