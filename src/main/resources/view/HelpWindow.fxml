@@ -113,9 +113,9 @@
                     <Text text="Extraneous parameters for certain commands (" style="-fx-fill: white; -fx-font-size:14px"/>
                     <Text text="help" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
                     <Text text=", " style="-fx-fill: white; -fx-font-size:14px"/>
-                    <Text text="exit" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
-                    <Text text=" and " style="-fx-fill: white; -fx-font-size:14px"/>
                     <Text text="clear" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
+                    <Text text=" and " style="-fx-fill: white; -fx-font-size:14px"/>
+                    <Text text="exit" style="-fx-fill: #79b8ff; -fx-font-family: 'DejaVu Sans'; -fx-font-size:14px"/>
                     <Text text=") are ignored." style="-fx-fill: white; -fx-font-size:14px"/>
                   </TextFlow>
                   <TextFlow style="-fx-padding: 0 0 0 15px;">
@@ -184,15 +184,14 @@
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Cannot end with a special character (@, ., -, etc.)." style="-fx-fill: white;"/>
-                  </TextFlow>
-                  <TextFlow styleClass="paragraph">
-                    <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="No consecutive special characters (e.g., --, @@, ..)." style="-fx-fill: white;"/>
-                  </TextFlow>
-                  <TextFlow styleClass="paragraph">
-                    <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Maximum length of 150 characters." style="-fx-fill: white;"/>
+                  </TextFlow>
+                  <TextFlow styleClass="paragraph">
+                    <Text text="• " style="-fx-fill: white;"/>
+                    <Text text="Special characters allowed in name: @ . , ! ' / -" style="-fx-fill: white;"/>
+                  </TextFlow>
+                  <TextFlow styleClass="paragraph">
+                    <Text text="• " style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <!-- Note Section Block -->
@@ -205,10 +204,7 @@
                     <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
                       <TextFlow>
-                        <Text text="• Fields indicated in brackets are optional, like [r/RELATIONSHIP]. This means that you can add a contact without indicating a relationship." style="-fx-fill: white; -fx-font-size:14px"/>
-                      </TextFlow>
-                      <TextFlow>
-                        <Text text="• You can add multiple tags to a contact." style="-fx-fill: white; -fx-font-size:14px"/>
+                        <Text text="• You can add multiple tags to a contact but no duplicate tags are allowed!" style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
                         <Text text="• Only " style="-fx-fill: white; -fx-font-size:14px"/>
@@ -220,6 +216,8 @@
                         <Text text="/" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
                         <Text text=" characters must be escaped with " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text="\\" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text="n/" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
+                        <Text text="in your fields, use: " style="-fx-fill: white; -fx-font-size:14px"/>
                         <Text text=" to be recognized correctly." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
                       <TextFlow>
@@ -247,7 +245,7 @@
 
                 <TextFlow styleClass="paragraph">
                   <Text text="Syntax: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                  <Text text="delete INDEX…​" styleClass="code-block"/>
+                  <Text text="delete INDEX [MORE_INDEXES]…​" styleClass="code-block"/>
                 </TextFlow>
 
                 <VBox spacing="20" alignment="CENTER_LEFT">
@@ -351,7 +349,7 @@
                     <Text text="must be a positive integer." style="-fx-fill: white; -fx-font-weight: bold;"/></TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="At least one of the optional fields must be provided." style="-fx-fill: white;"/>
+                    <Text text="At least one of the fields must be provided." style="-fx-fill: white;"/>
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
@@ -526,12 +524,6 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                   </TextFlow>
                   <TextFlow styleClass="paragraph">
                     <Text text="• " style="-fx-fill: white;"/>
-                    <Text text="Only works if the previous command was " style="-fx-fill: white;"/>
-                    <Text text="undo" style="-fx-fill: white; -fx-font-family: 'DejaVu Sans';"/>
-                    <Text text="." style="-fx-fill: white;"/>
-                  </TextFlow>
-                  <TextFlow styleClass="paragraph">
-                    <Text text="• " style="-fx-fill: white;"/>
                     <Text text="Will display " style="-fx-fill: white;"/>
                     <Text text="Nothing to redo!" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-family: 'DejaVu Sans';"/>
                     <Text text=" if there are no undone changes to reapply." style="-fx-fill: white;"/>
@@ -552,13 +544,6 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
                     <!-- Note Content -->
                     <VBox  spacing="5">
                       <Text text="Note:" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size:18px"/>
-                      <TextFlow>
-                        <Text text="• " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="redo" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" must be used immediately after " style="-fx-fill: white; -fx-font-size:14px"/>
-                        <Text text="undo" style="-fx-fill: white; -fx-font-size:14px; -fx-font-family: 'DejaVu Sans';"/>
-                        <Text text=" - any other command will clear the redo history." style="-fx-fill: white; -fx-font-size:14px"/>
-                      </TextFlow>
                       <TextFlow>
                         <Text text="• The undo/redo history does not persist when the application is closed." style="-fx-fill: white; -fx-font-size:14px"/>
                       </TextFlow>
@@ -598,13 +583,14 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
 
                 <TextFlow styleClass="paragraph">
                   <Text text="Syntax: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                  <Text text="find KEYWORD [MORE_KEYWORDS]" styleClass="code-block"/>
+                  <Text text="find KEYWORD [MORE_KEYWORDS]…​" styleClass="code-block"/>
                 </TextFlow>
 
                 <VBox spacing="20" alignment="CENTER_LEFT">
                   <TextFlow styleClass="paragraph">
                     <Text text="Description: " style="-fx-fill: white; -fx-font-weight: bold;"/>
                     <Text text="Finds persons whose names contain any of the given keywords." style="-fx-fill: white;"/>
+                    <Text text="If no names are found through prefix-matching, fuzzy search is used as a fallback search method." style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <TextFlow styleClass="paragraph">
@@ -803,7 +789,7 @@ E.g. to remove a nickname: edit 2 nn/." style="-fx-fill: white; -fx-font-size:14
 
                   <TextFlow styleClass="paragraph">
                     <Text text="Description: " style="-fx-fill: white; -fx-font-weight: bold;"/>
-                    <Text text="Clears all entries from the address book." style="-fx-fill: white;"/>
+                    <Text text="Clears all entries from the address book. Requires confirmation from user before executing." style="-fx-fill: white;"/>
                   </TextFlow>
 
                   <!-- Warning Block -->
