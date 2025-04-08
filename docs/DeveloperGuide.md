@@ -151,7 +151,7 @@ The `Storage` component,
 * can save address book data, command history data, and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from `AddressBookStorage`, `CommandHistoryStorage` and `UserPrefStorage`, which means it can be treated as any one (if only the functionality of only one is needed).
 * provides read-only interfaces (`ReadOnlyAddressBook` and `ReadOnlyCommandHistory`) for controlled data access.
-* is implemented by concrete classes `JsonAddressBookStorage` and `JsonCommandHistoryStorage` which extend the abstract generic `JsonStorage<T, S extends JsonSerializable<T>>` for type-safe serialization.
+* is implemented by concrete classes `JsonAddressBookStorage` and `JsonCommandHistoryStorage` which extend the abstract generic class `JsonStorage<T, S extends JsonSerializable<T>>` for type-safe serialization.
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
@@ -764,7 +764,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Navigating command history
 
-    1. Prerequisites: At least one command (e.g., list) have been executed.
+    1. Prerequisites: At least one command (e.g., list) has been executed.
 
     1. Test case: Press Up arrow key after entering a command<br>
     Expected: Previous command appears in command box.
@@ -828,11 +828,9 @@ testers are expected to do more *exploratory* testing.
 
 Team Size: 5
 
-1. **Make `undo` message for edit commands more specific:** Currently, the message only shows the command and name of the person being edited which is too general.
-   We plan to enhance the message to show the specific field and value changed to improve clarity for the user.
+1. **Make `undo` / `redo` message for edit commands more specific:** Currently, the message only shows the command and name of the person being edited which is too general. We aim to display which specific fields were changed. This provides users with immediate clarity about what was modified and helps prevent accidental data loss when performing multiple `undo` / `redo` commands.
 
-2. **Ensure `undo` / `redo` restore order in any state:** Currently, the order is preserved when `undo` and `redo` is used in its base form with no search filters (i.e. from `list` or `find`) applied. 
-   This applies to the states after list and find have been executed followed by an `UndoableCommand`. We plan to enhance `undo` and `redo` to preserve the order with or without search filters.
+2. **Ensure `undo` / `redo` restore order in any state:** Currently, the order is preserved when `undo` and `redo` is used when the list has no sorters or search filters (i.e. from `list` or `find`) applied. However, the order might not be preserved when an `undo` / `redo` command is executed after sorters or search filters have been applied. We plan to enhance `undo` and `redo` to preserve the order with or without sorters or search filters.
 
 3. **Implement `undo` / `redo` for `clear`:** Currently, `undo` / `redo` are only supported by `edit`, `add` and `delete`. 
    We plan to extend this functionality to `clear` as it will be useful for this "dangerous" command as it currently cannot be undone.
@@ -841,17 +839,19 @@ Team Size: 5
    This is too general. We plan to enhance the message to show the specific prefix which caused the error. This is so that the user
    can quickly identify the mistake in the command.
 
-5. **Make `find` applicable to other fields besides name**: Currently, the find feature is limited to finding by name. We plan to enhance the find feature to allow user to find persons
+5. **Improve error message specificity for `edit` and `delete` commands when users input extreme values**: Currently, when users input negative numbers or extremely large numbers as indices, a generic "Invalid command format" error message is displayed. Instead of displaying a generic message, the application should provide clear, targeted feedback such as "Index cannot be negative" or "Index is too large" to help users understand exactly what went wrong.
+
+6. **Make `find` applicable to other fields besides name**: Currently, the find feature is limited to finding by name. We plan to enhance the find feature to allow user to find persons
    through other fields such as relationship and nickname. This would make searching for a forgotten relative much easier and more likely to be successful.
 
-6. **Allow tags to be edited without overwriting them**: Currently, there is no feature that allows the user to edit tags or add to them without erasing all current tags.
+7. **Allow tags to be edited without overwriting them**: Currently, there is no feature that allows the user to edit tags or add to them without erasing all current tags.
    This makes tasks such as adding a tag to the current set of tags difficult. We plan to create a feature which allows users to
    edit or add tags without erasing all current tags.
 
-7. **Expand our image support to allow other extensions**: Currently, the application only supports `.png` images. We plan to expand the supported image formats to include additional common extensions like `.jpg`, `.jpeg`, and `.gif`.
+8. **Expand our image support to allow other extensions**: Currently, the application only supports `.png` images. We plan to expand the supported image formats to include additional common extensions like `.jpg`, `.jpeg`, and `.gif`.
    This will allow users to use a wider variety of images for their family members.
 
-8. **Relax the birthday datetime format**: Currently, the birthday datetime format only accepts `DD-MM-YYYY` which is too strict. We plan to relax this restriction to allow for more flexible inputs. This will make the application more user-friendly and accommodating to different date formats.
+9. **Relax the birthday datetime format**: Currently, the birthday datetime format only accepts `DD-MM-YYYY` which is too strict. We plan to relax this restriction to allow for more flexible inputs. This will make the application more user-friendly and accommodating to different date formats.
 
-9. **Improve our duplicate Person detection algorithm**: Currently, the algorithm for detecting duplicate persons may not be robust enough. We plan to enhance this duplicate detection algorithm to more accurately identify duplicate persons. This could be possibly done in the form of adding a confirmation message when duplicate persons may be detected. 
-   This will help to ensure that the address book remains clean and free of duplicates. 
+10. **Improve our duplicate Person detection algorithm**: Currently, the algorithm for detecting duplicate persons may not be robust enough. We plan to enhance this duplicate detection algorithm to more accurately identify duplicate persons. This could be possibly done in the form of adding a confirmation message when duplicate persons may be detected. 
+   This will help to ensure that the address book remains clean and free of duplicates.
