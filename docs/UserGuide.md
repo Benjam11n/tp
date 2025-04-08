@@ -25,7 +25,7 @@
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar whoareyouagain.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/SampleUi.png)
     <br>
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -107,7 +107,7 @@ See the [Person Fields Summary](#person-fields-summary) for complete details on 
 
 #### Image Support:
 ✔ **Only `.png` supported for now**  
-✔ **Use `img/<IMAGE_PATH>` to specify the image path**  
+✔ **Use `img/IMAGE_PATH` to specify the image path**  
 ✔ **Image path is highly recommended to be absolute**  
 <small>*(An absolute path is the full location from the system root, e.g. `/Users/alex/images/photo.png`)*</small>
 
@@ -200,7 +200,7 @@ Finds persons whose names match any of the given keywords. If **no exact or pref
 
 **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
-* Performs an exact and prefix match search first.
+* Performs an **exact and prefix match** search first.
   If no results are found, a fuzzy search will suggest similar names instead.   
   E.g. `find Jon` can return names like `John`, `Jonathan`, or `Joni`.
 * The search is case-insensitive.  
@@ -208,7 +208,7 @@ Finds persons whose names match any of the given keywords. If **no exact or pref
 * The order of the keywords does not matter.  
   E.g. `find Hans Bo` will match `Bo Hans`
 * **Only the name is searched.**
-* Prefix matching. `find Ber` will match `Bertha`, `Bernice`, `Bern` etc.
+* Prefix matching: `find Ber` will match `Bertha`, `Bernice`, `Bern` etc.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).  
   E.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -349,7 +349,7 @@ Note: Backslashes will only be removed when they appear immediately before a for
 
 | Field        | Prefix | Description                                                                              | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                         | Examples                                         |
 |--------------|--------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
-| Name         | `n/`   | Full name of the person and [used for duplicate detection](#detecting-duplicate-persons) | • Required<br>• Max 150 characters<br>• Must start with a letter<br>• Can contain letters, digits, spaces<br>• Allowed special characters: `@`, `.`, `,`, `!`, `'`, `/` and `-`<br>• No consecutive special characters<br>• Cannot start or end with special characters                                                                                                                                                             | `John Smith`, `Maria O'Brien`, `Lee-Wang`        |
+| Name         | `n/`   | Full name of the person and used for [duplicate detection](#detecting-duplicate-persons) | • Required<br>• Max 150 characters<br>• Must start with a letter<br>• Can contain letters, digits, spaces<br>• Allowed special characters: `@`, `.`, `,`, `!`, `'`, `/` and `-`<br>• No consecutive special characters<br>• Cannot start or end with special characters                                                                                                                                                             | `John Smith`, `Maria O'Brien`, `Lee-Wang`        |
 | Phone        | `p/`   | Contact phone number                                                                     | • Optional<br>• Max 50 characters<br>• Can contain any printable ASCII characters                                                                                                                                                                                                                                                                                                                                                   | `+1 (555) 123-4567`, `91234567 (Mother)`         |
 | Email        | `e/`   | Email address                                                                            | • Optional<br>• Max 254 characters<br>• Must follow format: local-part@domain<br>• Local part must start and end with alphanumeric character<br>• Local part can contain: letters, numbers, `+`, `_`, `.` and `-`<br>• No consecutive dots or special characters<br>• Domain must have at least one period<br>• Domain labels must start/end with alphanumeric character<br>• Domain must end with top-level domain (min 2 letters) | `john.doe@example.com`, `user_name@domain.co.uk` |
 | Address      | `a/`   | Residential or mailing address                                                           | • Optional<br>• Max 200 characters<br>• Can contain any characters                                                                                                                                                                                                                                                                                                                                                                  | `123 Main St, Apt 4B, New York, NY 10001`        |
@@ -384,6 +384,7 @@ Note: Backslashes will only be removed when they appear immediately before a for
 * **CLI (Command Line Interface)**: A text-based interface where users interact with the application by typing commands.
 * **GUI (Graphical User Interface)**: The visual elements of the application (buttons, images, windows) that users can interact with.
 * **cd**: Short for "change directory," a command used in the terminal or command prompt to navigate between folders or directories on your computer.
+* **Home Folder**: The directory where the WhoAreYouAgain application and its data files are stored. It contains the application's JAR file and the data subfolder where contact information and command history are saved.
 * **JDK (Java Development Kit)**: A software package that includes everything needed to develop Java applications. It contains the Java Runtime Environment (JRE), compiler, debugger, and other tools required for Java development.
 * **Index**: The number shown next to each contact in the displayed list, used to identify specific contacts in commands.
 * **Parameter**: Additional information provided with a command, usually preceded by a prefix like `n/` or `p/`.
