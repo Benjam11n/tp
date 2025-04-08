@@ -198,7 +198,7 @@ Shows a list of all persons in the family book.
 
 Finds persons whose names match any of the given keywords. If **no exact or prefix** matches are found, the app will automatically attempt a fuzzy search to suggest similar names.
 
-**Format:** `find KEYWORD [MORE_KEYWORDS]`
+**Format:** `find KEYWORD [MORE_KEYWORDS]…​`
 
 * Performs an **exact and prefix match** search first.
   If no results are found, a fuzzy search will suggest similar names instead.   
@@ -370,7 +370,7 @@ Note: Backslashes will only be removed when they appear immediately before a for
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RELATIONSHIP] [nn/NICKNAME] [b/BIRTHDAY] [no/NOTES] [img/IMAGE_PATH] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`                                                                                           |
 | **Delete** | `delete INDEX [MORE_INDEXES]…​`<br> e.g. `delete 3`, `delete 1 2 4`                                                                                                                                                                                                                          |
 | **List**   | `list [s/SORT_ORDER]`<br>e.g.`list s/asc`                                                                                                                                                                                                                                                    |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                                                                                                                                                                                                    |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find James Jake`                                                                                                                                                                                                                                 |
 | **Undo**   | `undo`<br>Reverts the most recent `add`, `edit`, or `delete` command                                                                                                                                                                                                                         |
 | **Redo**   | `redo`<br>Re-applies the most recently undone command (only if `undo` was used before)                                                                                                                                                                                                       |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                                      |
