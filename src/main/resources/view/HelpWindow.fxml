@@ -44,7 +44,7 @@
               </HBox>
 
               <TextFlow styleClass="paragraph" style="-fx-padding: 8 0 0 0;">
-                <Text text="This help window provides only basic guidance. For complete documentation and detailed examples, please refer to the full User Guide." style="-fx-fill: #e0e0e0; -fx-font-size: 14;"/>
+                <Text text="This help window provides only basic guidance. For complete documentation and detailed examples, please refer to the full User Guide. (Copy and paste the link below)" style="-fx-fill: #e0e0e0; -fx-font-size: 14;"/>
               </TextFlow>
               <TextFlow styleClass="paragraph" style="-fx-padding: 8 0 0 0;">
                 <TextField text="https://ay2425s2-cs2103t-t14-1.github.io/tp/UserGuide.html" editable="false" focusTraversable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;-fx-text-fill: #3399ff;-fx-font-size: 14;-fx-underline: true;" prefWidth="600" maxWidth="Infinity" />
