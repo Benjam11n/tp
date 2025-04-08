@@ -37,6 +37,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (!argMultimap.getPreamble().isBlank()) {
             throw new ParseException("Invalid command format.\n" + COMMAND_USAGE);
         }
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SORT);
         Optional<String> sort = argMultimap.getValue(PREFIX_SORT).map(String::toLowerCase).map(String::trim);
 
         if (sort.isEmpty()) {
